@@ -8,13 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		AE1FADBA1AEEC66800C1783F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1FADB91AEEC66800C1783F /* AppDelegate.swift */; };
-		AE1FADBC1AEEC66800C1783F /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = AE1FADBB1AEEC66800C1783F /* GameScene.sks */; };
-		AE1FADBE1AEEC66800C1783F /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1FADBD1AEEC66800C1783F /* GameScene.swift */; };
-		AE1FADC01AEEC66800C1783F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1FADBF1AEEC66800C1783F /* GameViewController.swift */; };
 		AE1FADC31AEEC66800C1783F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1FADC11AEEC66800C1783F /* Main.storyboard */; };
 		AE1FADC51AEEC66800C1783F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE1FADC41AEEC66800C1783F /* Images.xcassets */; };
-		AE1FADC81AEEC66800C1783F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AE1FADC61AEEC66800C1783F /* LaunchScreen.xib */; };
 		AE1FADD41AEEC66800C1783F /* The_New_Space_PlatypusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1FADD31AEEC66800C1783F /* The_New_Space_PlatypusTests.swift */; };
+		AEA28C721AEEF20E00E40BB6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA28C711AEEF20E00E40BB6 /* Crashlytics.framework */; };
+		AED150D81AEEC7C300D1C1A0 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED150D71AEEC7C300D1C1A0 /* GameKit.framework */; };
+		AED150DA1AEEC95D00D1C1A0 /* CustomizeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED150D91AEEC95D00D1C1A0 /* CustomizeScene.swift */; };
+		AED150DC1AEEC97100D1C1A0 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED150DB1AEEC97100D1C1A0 /* GameScene.swift */; };
+		AED150DE1AEEC9B700D1C1A0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED150DD1AEEC9B700D1C1A0 /* GameViewController.swift */; };
+		AED150E01AEEC9C100D1C1A0 /* OptionsScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED150DF1AEEC9C100D1C1A0 /* OptionsScene.swift */; };
+		AED150E21AEEC9C800D1C1A0 /* PlatypusNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED150E11AEEC9C800D1C1A0 /* PlatypusNode.swift */; };
+		AED150E41AEEC9D200D1C1A0 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED150E31AEEC9D200D1C1A0 /* Timer.swift */; };
+		AED150E61AEEC9D900D1C1A0 /* WelcomeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED150E51AEEC9D900D1C1A0 /* WelcomeScene.swift */; };
+		AED150E81AEECA2200D1C1A0 /* bodyOnFire.sks in Resources */ = {isa = PBXBuildFile; fileRef = AED150E71AEECA2200D1C1A0 /* bodyOnFire.sks */; };
+		AED150EA1AEECA2A00D1C1A0 /* confetti.png in Resources */ = {isa = PBXBuildFile; fileRef = AED150E91AEECA2A00D1C1A0 /* confetti.png */; };
+		AED150ED1AEECA3900D1C1A0 /* MyExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = AED150EB1AEECA3900D1C1A0 /* MyExplosion.sks */; };
+		AED150EE1AEECA3900D1C1A0 /* MyParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = AED150EC1AEECA3900D1C1A0 /* MyParticle.sks */; };
+		AED150F01AEECA4000D1C1A0 /* smallExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = AED150EF1AEECA4000D1C1A0 /* smallExplosion.sks */; };
+		AED150F51AEECA4900D1C1A0 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = AED150F11AEECA4900D1C1A0 /* spark.png */; };
+		AED150F61AEECA4900D1C1A0 /* spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = AED150F21AEECA4900D1C1A0 /* spark.sks */; };
+		AED150F71AEECA4900D1C1A0 /* Stars.sks in Resources */ = {isa = PBXBuildFile; fileRef = AED150F31AEECA4900D1C1A0 /* Stars.sks */; };
+		AED150F81AEECA4900D1C1A0 /* tail.sks in Resources */ = {isa = PBXBuildFile; fileRef = AED150F41AEECA4900D1C1A0 /* tail.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,15 +45,29 @@
 		AE1FADB41AEEC66800C1783F /* The New Space Platypus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "The New Space Platypus.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE1FADB81AEEC66800C1783F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE1FADB91AEEC66800C1783F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AE1FADBB1AEEC66800C1783F /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		AE1FADBD1AEEC66800C1783F /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		AE1FADBF1AEEC66800C1783F /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		AE1FADC21AEEC66800C1783F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AE1FADC41AEEC66800C1783F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		AE1FADC71AEEC66800C1783F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		AE1FADCD1AEEC66800C1783F /* The New Space PlatypusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "The New Space PlatypusTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE1FADD21AEEC66800C1783F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE1FADD31AEEC66800C1783F /* The_New_Space_PlatypusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_New_Space_PlatypusTests.swift; sourceTree = "<group>"; };
+		AEA28C711AEEF20E00E40BB6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		AED150D71AEEC7C300D1C1A0 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		AED150D91AEEC95D00D1C1A0 /* CustomizeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizeScene.swift; sourceTree = "<group>"; };
+		AED150DB1AEEC97100D1C1A0 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		AED150DD1AEEC9B700D1C1A0 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		AED150DF1AEEC9C100D1C1A0 /* OptionsScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsScene.swift; sourceTree = "<group>"; };
+		AED150E11AEEC9C800D1C1A0 /* PlatypusNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatypusNode.swift; sourceTree = "<group>"; };
+		AED150E31AEEC9D200D1C1A0 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		AED150E51AEEC9D900D1C1A0 /* WelcomeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeScene.swift; sourceTree = "<group>"; };
+		AED150E71AEECA2200D1C1A0 /* bodyOnFire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = bodyOnFire.sks; sourceTree = "<group>"; };
+		AED150E91AEECA2A00D1C1A0 /* confetti.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confetti.png; sourceTree = "<group>"; };
+		AED150EB1AEECA3900D1C1A0 /* MyExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyExplosion.sks; sourceTree = "<group>"; };
+		AED150EC1AEECA3900D1C1A0 /* MyParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyParticle.sks; sourceTree = "<group>"; };
+		AED150EF1AEECA4000D1C1A0 /* smallExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = smallExplosion.sks; sourceTree = "<group>"; };
+		AED150F11AEECA4900D1C1A0 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		AED150F21AEECA4900D1C1A0 /* spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = spark.sks; sourceTree = "<group>"; };
+		AED150F31AEECA4900D1C1A0 /* Stars.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Stars.sks; sourceTree = "<group>"; };
+		AED150F41AEECA4900D1C1A0 /* tail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = tail.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AEA28C721AEEF20E00E40BB6 /* Crashlytics.framework in Frameworks */,
+				AED150D81AEEC7C300D1C1A0 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,9 +93,11 @@
 		AE1FADAB1AEEC66700C1783F = {
 			isa = PBXGroup;
 			children = (
+				AED150D71AEEC7C300D1C1A0 /* GameKit.framework */,
 				AE1FADB61AEEC66800C1783F /* The New Space Platypus */,
 				AE1FADD01AEEC66800C1783F /* The New Space PlatypusTests */,
 				AE1FADB51AEEC66800C1783F /* Products */,
+				AEA28C711AEEF20E00E40BB6 /* Crashlytics.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,12 +114,24 @@
 			isa = PBXGroup;
 			children = (
 				AE1FADB91AEEC66800C1783F /* AppDelegate.swift */,
-				AE1FADBB1AEEC66800C1783F /* GameScene.sks */,
-				AE1FADBD1AEEC66800C1783F /* GameScene.swift */,
-				AE1FADBF1AEEC66800C1783F /* GameViewController.swift */,
+				AED150DB1AEEC97100D1C1A0 /* GameScene.swift */,
+				AED150D91AEEC95D00D1C1A0 /* CustomizeScene.swift */,
+				AED150DD1AEEC9B700D1C1A0 /* GameViewController.swift */,
+				AED150DF1AEEC9C100D1C1A0 /* OptionsScene.swift */,
+				AED150E11AEEC9C800D1C1A0 /* PlatypusNode.swift */,
+				AED150E31AEEC9D200D1C1A0 /* Timer.swift */,
+				AED150E51AEEC9D900D1C1A0 /* WelcomeScene.swift */,
 				AE1FADC11AEEC66800C1783F /* Main.storyboard */,
+				AED150E71AEECA2200D1C1A0 /* bodyOnFire.sks */,
+				AED150E91AEECA2A00D1C1A0 /* confetti.png */,
+				AED150EB1AEECA3900D1C1A0 /* MyExplosion.sks */,
+				AED150EF1AEECA4000D1C1A0 /* smallExplosion.sks */,
+				AED150F11AEECA4900D1C1A0 /* spark.png */,
+				AED150F21AEECA4900D1C1A0 /* spark.sks */,
+				AED150F31AEECA4900D1C1A0 /* Stars.sks */,
+				AED150F41AEECA4900D1C1A0 /* tail.sks */,
+				AED150EC1AEECA3900D1C1A0 /* MyParticle.sks */,
 				AE1FADC41AEEC66800C1783F /* Images.xcassets */,
-				AE1FADC61AEEC66800C1783F /* LaunchScreen.xib */,
 				AE1FADB71AEEC66800C1783F /* Supporting Files */,
 			);
 			path = "The New Space Platypus";
@@ -128,6 +172,7 @@
 				AE1FADB01AEEC66700C1783F /* Sources */,
 				AE1FADB11AEEC66700C1783F /* Frameworks */,
 				AE1FADB21AEEC66700C1783F /* Resources */,
+				AEA28C701AEEF1F600E40BB6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -167,6 +212,12 @@
 				TargetAttributes = {
 					AE1FADB31AEEC66700C1783F = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 3W67YYZ9EF;
+						SystemCapabilities = {
+							com.apple.GameCenter = {
+								enabled = 1;
+							};
+						};
 					};
 					AE1FADCC1AEEC66800C1783F = {
 						CreatedOnToolsVersion = 6.3;
@@ -198,10 +249,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE1FADC81AEEC66800C1783F /* LaunchScreen.xib in Resources */,
+				AED150F71AEECA4900D1C1A0 /* Stars.sks in Resources */,
+				AED150F51AEECA4900D1C1A0 /* spark.png in Resources */,
 				AE1FADC51AEEC66800C1783F /* Images.xcassets in Resources */,
-				AE1FADBC1AEEC66800C1783F /* GameScene.sks in Resources */,
+				AED150E81AEECA2200D1C1A0 /* bodyOnFire.sks in Resources */,
+				AED150F81AEECA4900D1C1A0 /* tail.sks in Resources */,
+				AED150F01AEECA4000D1C1A0 /* smallExplosion.sks in Resources */,
+				AED150ED1AEECA3900D1C1A0 /* MyExplosion.sks in Resources */,
+				AED150EE1AEECA3900D1C1A0 /* MyParticle.sks in Resources */,
+				AED150EA1AEECA2A00D1C1A0 /* confetti.png in Resources */,
 				AE1FADC31AEEC66800C1783F /* Main.storyboard in Resources */,
+				AED150F61AEECA4900D1C1A0 /* spark.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,14 +272,35 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		AEA28C701AEEF1F600E40BB6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 1c6d125161cfd6155af441bc83d21a64632d815c 0bd63c3e7bccadb5a03117ce104a04e0040a7858af6c8bc5824aed3b65726fbd";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AE1FADB01AEEC66700C1783F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE1FADBE1AEEC66800C1783F /* GameScene.swift in Sources */,
-				AE1FADC01AEEC66800C1783F /* GameViewController.swift in Sources */,
+				AED150DE1AEEC9B700D1C1A0 /* GameViewController.swift in Sources */,
+				AED150DA1AEEC95D00D1C1A0 /* CustomizeScene.swift in Sources */,
+				AED150E41AEEC9D200D1C1A0 /* Timer.swift in Sources */,
+				AED150DC1AEEC97100D1C1A0 /* GameScene.swift in Sources */,
+				AED150E01AEEC9C100D1C1A0 /* OptionsScene.swift in Sources */,
 				AE1FADBA1AEEC66800C1783F /* AppDelegate.swift in Sources */,
+				AED150E21AEEC9C800D1C1A0 /* PlatypusNode.swift in Sources */,
+				AED150E61AEEC9D900D1C1A0 /* WelcomeScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,14 +329,6 @@
 				AE1FADC21AEEC66800C1783F /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		AE1FADC61AEEC66800C1783F /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AE1FADC71AEEC66800C1783F /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -301,7 +372,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -350,9 +421,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "The New Space Platypus/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -360,9 +440,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "The New Space Platypus/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -419,6 +508,7 @@
 				AE1FADD91AEEC66800C1783F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AE1FADDA1AEEC66800C1783F /* Build configuration list for PBXNativeTarget "The New Space PlatypusTests" */ = {
 			isa = XCConfigurationList;
@@ -427,6 +517,7 @@
 				AE1FADDC1AEEC66800C1783F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,61 +1,98 @@
 //
 //  GameViewController.swift
-//  The New Space Platypus
+//  Space Platypus Swift
 //
-//  Created by Andrew Paterson on 4/27/15.
-//  Copyright (c) 2015 Andrew Paterson. All rights reserved.
+//  Created by Andrew Paterson on 6/4/14.
+//  Copyright (c) 2014 Andrew Paterson. All rights reserved.
 //
-
+import iAd
 import UIKit
 import SpriteKit
+import GameKit
 
-extension SKNode {
-    class func unarchiveFromFile(file : String) -> SKNode? {
-        if let path = NSBundle.mainBundle().pathForResource(file, ofType: "sks") {
-            var sceneData = NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe, error: nil)!
-            var archiver = NSKeyedUnarchiver(forReadingWithData: sceneData)
-            
-            archiver.setClass(self.classForKeyedUnarchiver(), forClassName: "SKScene")
-            let scene = archiver.decodeObjectForKey(NSKeyedArchiveRootObjectKey) as! GameScene
-            archiver.finishDecoding()
-            return scene
-        } else {
-            return nil
-        }
-    }
-}
+class GameViewController: UIViewController, ADBannerViewDelegate {
 
-class GameViewController: UIViewController {
-
+    var iAdBanner = ADBannerView()
+    var bannerVisible = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let scene = GameScene.unarchiveFromFile("GameScene") as? GameScene {
-            // Configure the view.
-            let skView = self.view as! SKView
-            skView.showsFPS = true
-            skView.showsNodeCount = true
-            
-            /* Sprite Kit applies additional optimizations to improve rendering performance */
-            skView.ignoresSiblingOrder = true
-            
-            /* Set the scale mode to scale to fit the window */
-            scene.scaleMode = .AspectFill
-            
-            skView.presentScene(scene)
+        if gameCenterEnabled {
         }
+    }
+
+    func bannerViewDidLoadAd(banner: ADBannerView!) {
+        if(bannerVisible == false) {
+            
+            // Add banner Ad to the view
+            if(iAdBanner.superview == nil) {
+                self.view?.addSubview(iAdBanner)
+            }
+            
+            // Move banner into visible screen frame:
+            UIView.beginAnimations("iAdBannerShow", context: nil)
+            banner.frame = CGRectOffset(banner.frame, 0, -banner.frame.size.height)
+            UIView.commitAnimations()
+            
+            bannerVisible = true
+        }
+        
+    }
+    
+    // Hide banner, if Ad is not loaded.
+    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
+        if(bannerVisible == true) {
+            // Move banner below screen frame:
+            UIView.beginAnimations("iAdBannerHide", context: nil)
+            banner.frame = CGRectOffset(banner.frame, 0, banner.frame.size.height)
+            UIView.commitAnimations()
+            bannerVisible = false
+        }
+        
+    }
+    
+    func bannerViewActionDidFinish(banner: ADBannerView!) {
+        let view = self.view as! SKView
+        view.presentScene(WelcomeScene(size: self.view.frame.size))
+        if let height = self.view?.frame.size.height {
+            if let width = self.view?.frame.size.width {
+                banner.frame = CGRectMake(0, height, width, 50)
+                banner.frame = CGRectOffset(banner.frame, 0, banner.frame.size.height)
+            }
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+
+        let scene = WelcomeScene(size: self.view.frame.size)
+
+        // Configure the view.
+        let skView = self.view as! SKView
+        
+        /* Sprite Kit applies additional optimizations to improve rendering performance */
+        skView.ignoresSiblingOrder = true
+
+        /* Set the scale mode to scale to fit the window */
+        scene.scaleMode = .AspectFill
+
+        skView.presentScene(scene)
+        
+        if let height = self.view?.frame.size.height {
+            if let width = self.view?.frame.size.width {
+                iAdBanner.frame = CGRectMake(0, height, width, 50)
+                iAdBanner.delegate = self
+                bannerVisible = false
+            }
+        }
+
     }
 
     override func shouldAutorotate() -> Bool {
-        return true
+        return false
     }
 
     override func supportedInterfaceOrientations() -> Int {
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            return Int(UIInterfaceOrientationMask.AllButUpsideDown.rawValue)
-        } else {
-            return Int(UIInterfaceOrientationMask.All.rawValue)
-        }
+        return UIInterfaceOrientation.Portrait.rawValue
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,7 +100,4 @@ class GameViewController: UIViewController {
         // Release any cached data, images, etc that aren't in use.
     }
 
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
 }
