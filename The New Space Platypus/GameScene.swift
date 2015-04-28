@@ -394,7 +394,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
         rock.physicsBody?.collisionBitMask = ColliderType.Rock.rawValue | ColliderType.Platypus.rawValue
 
         self.addChild(rock)
-        rock.physicsBody?.applyImpulse(CGVectorMake(0, (self.slowMotion ? -0.125 : -0.75) * (self.impulseSlower ? 0.5 : 1.0) * (1.0 + (self.seconds.CGFloatValue / 75.0))))
+        rock.physicsBody?.applyImpulse(CGVectorMake(0, (self.slowMotion ? -0.125 : -0.75) * (self.impulseSlower ? 0.5 : 1.0) * (1.0 + (self.seconds.CGFloatValue / 65.0))))
 
 
     }
@@ -423,7 +423,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
     */
     func addRocks() {
         if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone {
-            let duration = self.slowMotion ? 1.36 : 0.16
+            var duration = self.slowMotion ? 1.36 - (Double(self.seconds) / 2000): 0.16 - (Double(self.seconds) / 2000)
+            duration = duration > 0.075 ? duration : 0.075
             let makeRocks = SKAction.runBlock({self.addRock()})
             let makeRocks2 = SKAction.runBlock({self.addRocks()})
             let delay = SKAction.waitForDuration(duration)
