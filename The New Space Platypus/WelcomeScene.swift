@@ -277,7 +277,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         helloNode.fontName = "Menlo-BoldItalic"
         helloNode.text = "Space Platypus"
         helloNode.fontSize = 32
-        helloNode.position = CGPointMake(CGRectGetMidX(self.frame) + 8, CGRectGetMidY(self.frame) - 3)
+        helloNode.position = CGPointMake(CGRectGetMidX(self.frame) + 8, CGRectGetMidY(self.frame) + 7)
         helloNode.name = "HelloNode"
         helloNode.zPosition = 19
         helloNode.fontColor = SKColor.darkGrayColor()
@@ -286,7 +286,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         helloNode111.fontName = "Menlo-BoldItalic"
         helloNode111.text = "The New"
         helloNode111.fontSize = 32
-        helloNode111.position = CGPointMake(CGRectGetMidX(self.frame) - 70, CGRectGetMidY(self.frame) + 36)
+        helloNode111.position = CGPointMake(CGRectGetMidX(self.frame) - 70, CGRectGetMidY(self.frame) + 46)
         helloNode111.name = "HelloNode"
         helloNode111.zPosition = 19
         helloNode111.fontColor = SKColor.darkGrayColor()
@@ -296,7 +296,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         helloNode1111.fontName = "Menlo-BoldItalic"
         helloNode1111.text = "The New"
         helloNode1111.fontSize = 32
-        helloNode1111.position = CGPointMake(CGRectGetMidX(self.frame) - 73, CGRectGetMidY(self.frame) + 39)
+        helloNode1111.position = CGPointMake(CGRectGetMidX(self.frame) - 73, CGRectGetMidY(self.frame) + 49)
         helloNode1111.name = "HelloNode"
         helloNode1111.zPosition = 19
         self.addChild(helloNode1111)
@@ -305,7 +305,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         helloNode1.fontName = "Menlo-BoldItalic"
         helloNode1.text = "Space Platypus"
         helloNode1.fontSize = 32
-        helloNode1.position = CGPointMake(CGRectGetMidX(self.frame) + 5, CGRectGetMidY(self.frame))
+        helloNode1.position = CGPointMake(CGRectGetMidX(self.frame) + 5, CGRectGetMidY(self.frame) + 10)
         helloNode1.name = "HelloNode"
         helloNode1.zPosition = 20
 
@@ -321,6 +321,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         playBox.position = playNode.position
         playBox.position = CGPointMake(playBox.position.x, playBox.position.y + 10)
         self.addChild(playBox)
+        playBox.name = "playBox"
 
         var customizeNode = SKLabelNode()
         customizeNode.fontName = "Helvetica"
@@ -329,11 +330,12 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         customizeNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 112.5)
         customizeNode.zPosition = 20
         
-        var customizeBox = SKShapeNode(rectOfSize: CGSizeMake(200, 50), cornerRadius: 2)
+        var customizeBox = SKShapeNode(rectOfSize: CGSizeMake(200, 50), cornerRadius: 5)
         customizeBox.strokeColor = SKColor.yellowColor()
         customizeBox.position = customizeNode.position
         customizeBox.position = CGPointMake(customizeBox.position.x, customizeBox.position.y + 10)
         self.addChild(customizeBox)
+        customizeBox.name = "customizeBox"
 
 //        var scoreNode = SKLabelNode()
 //        scoreNode.fontName = "Helvetica"
@@ -356,11 +358,12 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         optionsNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 175)
         optionsNode.zPosition = 20
 
-        var optionsBox = SKShapeNode(rectOfSize: CGSizeMake(200, 50), cornerRadius: 2)
+        var optionsBox = SKShapeNode(rectOfSize: CGSizeMake(200, 50), cornerRadius: 5)
         optionsBox.strokeColor = SKColor.greenColor()
         optionsBox.position = optionsNode.position
         optionsBox.position = CGPointMake(optionsBox.position.x, optionsBox.position.y + 10)
         self.addChild(optionsBox)
+        optionsBox.name = "optionsBox"
         
         self.addChild(optionsNode)
 //        self.addChild(achievementNode)
@@ -424,25 +427,42 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
     *
     *  @return The type of menu item present, returns kMenuItemTypeInvalid if no menu item is present at the given point
     */
-    func whatMenuItemTypeIsAtPoint(point: CGPoint) -> menuItemType {
+//    func whatMenuItemTypeIsAtPoint(point: CGPoint) -> menuItemType {
+//
+//        let midScreenY = CGRectGetMidY(self.frame)
+//        
+//        if point.y > (midScreenY - 75) && point.y < (midScreenY - 25) {
+//            return .kMenuItemTypePlay
+//        } else if point.y > (midScreenY - 137.5) && point.y < (midScreenY - 87.5) {
+//            return .kMenuItemTypeCustomize
+////        } else if point.y > (midScreenY - 126) && point.y < (midScreenY - 90) {
+////            return .kMenuItemTypeScores
+////        } else if point.y > (midScreenY - 162) && point.y < (midScreenY - 126) {
+////            return .kMenuItemTypeAchievements
+//        } else if point.y > (midScreenY - 175) && point.y < (midScreenY - 137.6) {
+//            return .kMenuItemTypeOptions
+//        } else {
+//            return .kMenuItemTypeInvalid
+//        }
+//    }
 
-        let midScreenY = CGRectGetMidY(self.frame)
+    func whatMenuItemTypeIsAtPoint(point: CGPoint) -> menuItemType {
         
-        if point.y > (midScreenY - 75) && point.y < (midScreenY - 25) {
+        if self.childNodeWithName("playBox")!.containsPoint(point) {
             return .kMenuItemTypePlay
-        } else if point.y > (midScreenY - 150) && point.y < (midScreenY - 74.9) {
+        }
+        else if self.childNodeWithName("customizeBox")!.containsPoint(point) {
             return .kMenuItemTypeCustomize
-//        } else if point.y > (midScreenY - 126) && point.y < (midScreenY - 90) {
-//            return .kMenuItemTypeScores
-//        } else if point.y > (midScreenY - 162) && point.y < (midScreenY - 126) {
-//            return .kMenuItemTypeAchievements
-        } else if point.y > (midScreenY - 250) && point.y < (midScreenY - 149.9) {
+        }
+        else if self.childNodeWithName("optionsBox")!.containsPoint(point) {
             return .kMenuItemTypeOptions
-        } else {
+        }
+        else {
             return .kMenuItemTypeInvalid
         }
+        
     }
-
+    
 }
 
 
