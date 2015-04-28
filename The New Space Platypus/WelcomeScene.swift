@@ -277,7 +277,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         helloNode.fontName = "Menlo-BoldItalic"
         helloNode.text = "Space Platypus"
         helloNode.fontSize = 36
-        helloNode.position = CGPointMake(CGRectGetMidX(self.frame) + 5, CGRectGetMidY(self.frame) - 5)
+        helloNode.position = CGPointMake(CGRectGetMidX(self.frame) + 10, CGRectGetMidY(self.frame) - 5)
         helloNode.name = "HelloNode"
         helloNode.zPosition = 19
         helloNode.fontColor = SKColor.darkGrayColor()
@@ -286,7 +286,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         helloNode111.fontName = "Menlo-BoldItalic"
         helloNode111.text = "The New"
         helloNode111.fontSize = 40
-        helloNode111.position = CGPointMake(CGRectGetMidX(self.frame) - 50, CGRectGetMidY(self.frame) + 31)
+        helloNode111.position = CGPointMake(CGRectGetMidX(self.frame) - 70, CGRectGetMidY(self.frame) + 36)
         helloNode111.name = "HelloNode"
         helloNode111.zPosition = 19
         helloNode111.fontColor = SKColor.darkGrayColor()
@@ -296,7 +296,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         helloNode1111.fontName = "Menlo-BoldItalic"
         helloNode1111.text = "The New"
         helloNode1111.fontSize = 40
-        helloNode1111.position = CGPointMake(CGRectGetMidX(self.frame) - 55, CGRectGetMidY(self.frame) + 36)
+        helloNode1111.position = CGPointMake(CGRectGetMidX(self.frame) - 75, CGRectGetMidY(self.frame) + 41)
         helloNode1111.name = "HelloNode"
         helloNode1111.zPosition = 19
         self.addChild(helloNode1111)
@@ -305,7 +305,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         helloNode1.fontName = "Menlo-BoldItalic"
         helloNode1.text = "Space Platypus"
         helloNode1.fontSize = 36
-        helloNode1.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
+        helloNode1.position = CGPointMake(CGRectGetMidX(self.frame) + 5, CGRectGetMidY(self.frame))
         helloNode1.name = "HelloNode"
         helloNode1.zPosition = 20
 

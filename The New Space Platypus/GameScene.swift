@@ -35,11 +35,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
             let node = self.childNodeWithName("lifeBar") as! SKSpriteNode
             node.texture = SKTexture(imageNamed: "LifeBarOne")
         }
-        if hits == 3 {
-            let node = self.childNodeWithName("lifeBar") as! SKSpriteNode
-            node.texture = SKTexture(imageNamed: "LifeBarEmpty")
-        }
-        if hits > 3 {
+        if hits > 2 {
             self.slowMotion = false
             self.gameOver()
         }
@@ -200,8 +196,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
             // Minimum gravity needed to allow rocks that are collided with to continue off screen
             self.physicsWorld.gravity = CGVectorMake(0, -1.5)
 
-            loadAchievements()
-            loadLeaderboardInfo()
+            
 
         }
     }
@@ -550,7 +545,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
             typeA == .Rock ? bodyA.node?.addChild(newSpark()) : bodyB.node?.addChild(newSpark())
             if !self.invincible {
                 hits++
-                if hits < 4 {
+                if hits < 3 {
                     self.handleInvincibility()
                 } else {
                     self.shouldAcceptFurtherCollisions = false
@@ -647,7 +642,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
         label.name = "label"
         let finalBlock: () -> () = ({
 
-            self.doGameCenter()
             let scene = WelcomeScene(size: self.size)
             let transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
             self.scene?.view?.presentScene(scene, transition: transition)
@@ -670,106 +664,4 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
         self.runAction(sequence)
     }
 
-    /**
-    *  Reports all scores and updates all achievements
-    *
-    *  @return Void
-    */
-    func doGameCenter() {
-        if gameCenterEnabled {
-            self.reportAchievement("Play_Space_Platypus_Once", additionalCompletion: 100.0)
-            self.reportAchievement("Play_10_Games_of_Space_Platypus", additionalCompletion: 10.0)
-            let score: Int64 = Int64(self.seconds)
-            self.reportScore(score, leaderboardID: "Highest0Time0Without0Hitting0A0Rock000000001")
-
-            if motionEnabled {
-                if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-                    self.reportScore(score, leaderboardID: "HighestTimeiPhoneAccelerometer")
-                } else {
-                    self.reportScore(score, leaderboardID: "HighestTimeiPadAccelerometer")
-                }
-            }
-            if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-                self.reportScore(score, leaderboardID: "HightestTimeiPhone")
-            } else {
-                self.reportScore(score, leaderboardID: "HighestTimeiPad")
-            }
-        }
-    }
-
-    /**
-    *  Loads the leaderboard info
-    *
-    *  @return Void
-    */
-    func loadLeaderboardInfo() {
-        GKLeaderboard.loadLeaderboardsWithCompletionHandler({(array, error) in if (array != nil) {self.leaderboards = array}})
-    }
-
-    /**
-    *  Reports a given score to Game Center
-    *
-    *  @param Int64  The Score
-    *  @param String The leaderboard ID
-    *
-    *  @return Void
-    */
-    func reportScore(score: Int64, leaderboardID: String) {
-        let sendScore = GKScore(leaderboardIdentifier: leaderboardID)
-        sendScore.value = score
-        var error = NSError()
-        GKScore.reportScores([sendScore], withCompletionHandler: { (error) -> Void in
-            return
-        })
-
-    }
-
-    /**
-    *  Loads the Acheivements
-    *
-    *  @return Void
-    */
-    func loadAchievements() {
-        GKAchievement.loadAchievementsWithCompletionHandler({(array, error) in
-            if !(error != nil) {
-                for thing: AnyObject in array {
-                    self.achievementsDictionary.setValue(thing, forKey: thing.identifier)
-                }
-            }
-            })
-    }
-
-    /**
-    *  Reports the achievement
-    *
-    *  @param String  Identifier of achievement to report
-    *  @param CDouble The ammount of additional completion to report
-    *
-    *  @return Void
-    */
-    func reportAchievement(identifier: String, additionalCompletion: CDouble) {
-        let achievement: GKAchievement = self.getAchievementForIdentifier(identifier)
-        if achievement.percentComplete != 100.0 {
-            achievement.percentComplete += additionalCompletion
-            GKAchievement.reportAchievements([achievement], withCompletionHandler: nil)
-        }
-    }
-    
-    /**
-    *  Gets the achievement for the given identifier
-    *
-    *  @param String The identifier of the achievement
-    *
-    *  @return The achievement object
-    */
-    func getAchievementForIdentifier(identifier: String) -> GKAchievement {
-        if (self.achievementsDictionary.valueForKey(identifier) != nil) {
-            return self.achievementsDictionary.valueForKey(identifier) as! GKAchievement
-        } else {
-            let achievement = GKAchievement(identifier: identifier)
-            self.achievementsDictionary.setValue(achievement, forKey: identifier)
-            return achievement
-        }
-    }
-    
 }
