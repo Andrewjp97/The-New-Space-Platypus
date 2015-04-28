@@ -166,9 +166,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
         let string = value % 60 < 10 ? "0\(value % 60)" : "\(value % 60)"
         self.timerLabel.text = "\(value / 60):\(string)"
         self.timerLabel.position = CGPointMake(10 + (0.5 * self.timerLabel.frame.size.width), self.frame.size.height - 20 - (0.5 * self.timerLabel.frame.size.height))
-        NSLog(valueString)
-        NSLog(self.timerLabel.text)
-        NSLog("\(self.timerLabel.position)")
+        
     }
 
     override func didMoveToView(view: SKView) {
@@ -397,7 +395,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
 
         self.addChild(rock)
         rock.physicsBody?.applyImpulse(CGVectorMake(0, (self.slowMotion ? -0.125 : -0.75) * (self.impulseSlower ? 0.5 : 1.0) * (1.0 + (self.seconds.CGFloatValue / 100.0))))
-        NSLog("\(rock.physicsBody?.velocity.dy)")
 
 
     }
@@ -529,7 +526,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
     }
 
     func didBeginContact(contact: SKPhysicsContact) {
-        NSLog("\(self.hits)")
         let bodyA = contact.bodyA
         let bodyB = contact.bodyB
         var typeA: ColliderType = ColliderType(rawValue: bodyA.categoryBitMask)!

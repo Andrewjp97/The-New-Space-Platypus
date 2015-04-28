@@ -276,8 +276,8 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         var helloNode = SKLabelNode()
         helloNode.fontName = "Menlo-BoldItalic"
         helloNode.text = "Space Platypus"
-        helloNode.fontSize = 36
-        helloNode.position = CGPointMake(CGRectGetMidX(self.frame) + 10, CGRectGetMidY(self.frame) - 5)
+        helloNode.fontSize = 32
+        helloNode.position = CGPointMake(CGRectGetMidX(self.frame) + 8, CGRectGetMidY(self.frame) - 3)
         helloNode.name = "HelloNode"
         helloNode.zPosition = 19
         helloNode.fontColor = SKColor.darkGrayColor()
@@ -285,7 +285,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         var helloNode111 = SKLabelNode()
         helloNode111.fontName = "Menlo-BoldItalic"
         helloNode111.text = "The New"
-        helloNode111.fontSize = 40
+        helloNode111.fontSize = 32
         helloNode111.position = CGPointMake(CGRectGetMidX(self.frame) - 70, CGRectGetMidY(self.frame) + 36)
         helloNode111.name = "HelloNode"
         helloNode111.zPosition = 19
@@ -295,8 +295,8 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         var helloNode1111 = SKLabelNode()
         helloNode1111.fontName = "Menlo-BoldItalic"
         helloNode1111.text = "The New"
-        helloNode1111.fontSize = 40
-        helloNode1111.position = CGPointMake(CGRectGetMidX(self.frame) - 75, CGRectGetMidY(self.frame) + 41)
+        helloNode1111.fontSize = 32
+        helloNode1111.position = CGPointMake(CGRectGetMidX(self.frame) - 73, CGRectGetMidY(self.frame) + 39)
         helloNode1111.name = "HelloNode"
         helloNode1111.zPosition = 19
         self.addChild(helloNode1111)
@@ -304,7 +304,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         var helloNode1 = SKLabelNode()
         helloNode1.fontName = "Menlo-BoldItalic"
         helloNode1.text = "Space Platypus"
-        helloNode1.fontSize = 36
+        helloNode1.fontSize = 32
         helloNode1.position = CGPointMake(CGRectGetMidX(self.frame) + 5, CGRectGetMidY(self.frame))
         helloNode1.name = "HelloNode"
         helloNode1.zPosition = 20
@@ -312,41 +312,59 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         var playNode = SKLabelNode()
         playNode.fontName = "Helvetica"
         playNode.text = "Play"
-        playNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 36)
+        playNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 50)
         playNode.fontColor = SKColor.redColor()
         playNode.zPosition = 20
+        
+        var playBox = SKShapeNode(rectOfSize: CGSizeMake(200, 50), cornerRadius: 5)
+        playBox.strokeColor = SKColor.redColor()
+        playBox.position = playNode.position
+        playBox.position = CGPointMake(playBox.position.x, playBox.position.y + 10)
+        self.addChild(playBox)
 
         var customizeNode = SKLabelNode()
         customizeNode.fontName = "Helvetica"
         customizeNode.text = "Customize"
         customizeNode.fontColor = SKColor.yellowColor()
-        customizeNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 72)
+        customizeNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 112.5)
         customizeNode.zPosition = 20
+        
+        var customizeBox = SKShapeNode(rectOfSize: CGSizeMake(200, 50), cornerRadius: 2)
+        customizeBox.strokeColor = SKColor.yellowColor()
+        customizeBox.position = customizeNode.position
+        customizeBox.position = CGPointMake(customizeBox.position.x, customizeBox.position.y + 10)
+        self.addChild(customizeBox)
 
-        var scoreNode = SKLabelNode()
-        scoreNode.fontName = "Helvetica"
-        scoreNode.text = "Scores"
-        scoreNode.fontColor = SKColor.greenColor()
-        scoreNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 108)
-        scoreNode.zPosition = 20
-
-        var achievementNode = SKLabelNode()
-        achievementNode.fontName = "Helvetica"
-        achievementNode.text = "Achievements"
-        achievementNode.fontColor = SKColor.blueColor()
-        achievementNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 144)
-        achievementNode.zPosition = 20
+//        var scoreNode = SKLabelNode()
+//        scoreNode.fontName = "Helvetica"
+//        scoreNode.text = "Scores"
+//        scoreNode.fontColor = SKColor.greenColor()
+//        scoreNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 108)
+//        scoreNode.zPosition = 20
+//
+//        var achievementNode = SKLabelNode()
+//        achievementNode.fontName = "Helvetica"
+//        achievementNode.text = "Achievements"
+//        achievementNode.fontColor = SKColor.blueColor()
+//        achievementNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 144)
+//        achievementNode.zPosition = 20
 
         var optionsNode = SKLabelNode()
         optionsNode.fontName = "Helvetica"
         optionsNode.text = "Options"
-        optionsNode.fontColor = SKColor.purpleColor()
-        optionsNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 180)
+        optionsNode.fontColor = SKColor.greenColor()
+        optionsNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 175)
         optionsNode.zPosition = 20
 
+        var optionsBox = SKShapeNode(rectOfSize: CGSizeMake(200, 50), cornerRadius: 2)
+        optionsBox.strokeColor = SKColor.greenColor()
+        optionsBox.position = optionsNode.position
+        optionsBox.position = CGPointMake(optionsBox.position.x, optionsBox.position.y + 10)
+        self.addChild(optionsBox)
+        
         self.addChild(optionsNode)
-        self.addChild(achievementNode)
-        self.addChild(scoreNode)
+//        self.addChild(achievementNode)
+//        self.addChild(scoreNode)
         self.addChild(customizeNode)
         self.addChild(playNode)
         self.addChild(helloNode1)
@@ -410,15 +428,15 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
 
         let midScreenY = CGRectGetMidY(self.frame)
         
-        if point.y > (midScreenY - 54.0) && point.y < (midScreenY - 18.0) {
+        if point.y > (midScreenY - 75) && point.y < (midScreenY - 25) {
             return .kMenuItemTypePlay
-        } else if point.y > (midScreenY - 90) && point.y < (midScreenY - 54) {
+        } else if point.y > (midScreenY - 150) && point.y < (midScreenY - 74.9) {
             return .kMenuItemTypeCustomize
-        } else if point.y > (midScreenY - 126) && point.y < (midScreenY - 90) {
-            return .kMenuItemTypeScores
-        } else if point.y > (midScreenY - 162) && point.y < (midScreenY - 126) {
-            return .kMenuItemTypeAchievements
-        } else if point.y > (midScreenY - 198) && point.y < (midScreenY - 162) {
+//        } else if point.y > (midScreenY - 126) && point.y < (midScreenY - 90) {
+//            return .kMenuItemTypeScores
+//        } else if point.y > (midScreenY - 162) && point.y < (midScreenY - 126) {
+//            return .kMenuItemTypeAchievements
+        } else if point.y > (midScreenY - 250) && point.y < (midScreenY - 149.9) {
             return .kMenuItemTypeOptions
         } else {
             return .kMenuItemTypeInvalid

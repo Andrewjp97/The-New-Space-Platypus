@@ -17,8 +17,7 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if gameCenterEnabled {
-        }
+        
     }
 
     func bannerViewDidLoadAd(banner: ADBannerView!) {

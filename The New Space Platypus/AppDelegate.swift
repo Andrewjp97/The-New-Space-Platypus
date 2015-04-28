@@ -148,17 +148,7 @@ willSet {
 }
 }
 
-var gameCenterEnabled: Bool = true {
-willSet {
-    if !NSUserDefaults.standardUserDefaults().boolForKey("value") {
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "value")
-        NSUserDefaults.standardUserDefaults().setBool(true, forKey: "gk")
-    }
-    else {
-        NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "gk")
-    }
-}
-}
+
 
 
 //import Crashlytics
@@ -177,7 +167,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // gameCenterEnabled = true
         //    NSUserDefaults.standardUserDefaults().setObject("yes", forKey: "test")
         // }
-        gameCenterEnabled = NSUserDefaults.standardUserDefaults().boolForKey("gk")
         if let colorString:NSString = NSUserDefaults.standardUserDefaults().objectForKey("platypusColor") as? NSString {
             switch colorString {
             case "red":
