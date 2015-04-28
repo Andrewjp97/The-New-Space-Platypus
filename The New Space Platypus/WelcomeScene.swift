@@ -105,13 +105,13 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
             let helloNode = self.childNodeWithName("HelloNode")
             if helloNode != nil {
                 helloNode?.name = nil
-                let zoom = SKAction.scaleTo(0.05, duration: 0.5)
-                let fade = SKAction.fadeOutWithDuration(0.5)
+                let zoom = SKAction.scaleTo(0.05, duration: 0.25)
+                let fade = SKAction.fadeOutWithDuration(0.25)
                 let remove = SKAction.removeFromParent()
                 let sequence = SKAction.sequence([zoom, fade, remove])
                 helloNode?.runAction(sequence, completion: ({
                     let scene = GameScene(size: self.size)
-                    let doors = SKTransition.doorsOpenVerticalWithDuration(0.5)
+                    let doors = SKTransition.doorsOpenVerticalWithDuration(0.25)
                     self.view?.presentScene(scene, transition: doors)
                 }))
             }
@@ -285,7 +285,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         var helloNode111 = SKLabelNode()
         helloNode111.fontName = "Menlo-BoldItalic"
         helloNode111.text = "The New"
-        helloNode111.fontSize = 32
+        helloNode111.fontSize = 36
         helloNode111.position = CGPointMake(CGRectGetMidX(self.frame) - 70, CGRectGetMidY(self.frame) + 46)
         helloNode111.name = "HelloNode"
         helloNode111.zPosition = 19
@@ -295,7 +295,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         var helloNode1111 = SKLabelNode()
         helloNode1111.fontName = "Menlo-BoldItalic"
         helloNode1111.text = "The New"
-        helloNode1111.fontSize = 32
+        helloNode1111.fontSize = 36
         helloNode1111.position = CGPointMake(CGRectGetMidX(self.frame) - 73, CGRectGetMidY(self.frame) + 49)
         helloNode1111.name = "HelloNode"
         helloNode1111.zPosition = 19
