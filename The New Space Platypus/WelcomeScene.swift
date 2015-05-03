@@ -384,7 +384,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         self.addChild(scoreNode)
         
         var scoreBox = SKShapeNode(rectOfSize: CGSizeMake(200, 50), cornerRadius: 5)
-        scoreBox.strokeColor = SKColor.greenColor()
+        scoreBox.strokeColor = SKColor.purpleColor()
         scoreBox.position = scoreNode.position
         scoreBox.position = CGPointMake(scoreBox.position.x, scoreBox.position.y + 10)
         self.addChild(scoreBox)
