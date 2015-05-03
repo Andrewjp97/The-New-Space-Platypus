@@ -569,7 +569,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
     func userFeedback() {
         
         let node = SKShapeNode(rectOfSize: self.frame.size)
-        node.fillColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.6)
+        node.fillColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.25 * CGFloat(hits))
         node.strokeColor = UIColor.redColor()
         node.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         self.addChild(node)
