@@ -21,11 +21,11 @@ class GameViewController: UIViewController, ADBannerViewDelegate, EasyGameCenter
     }
 
     func easyGameCenterAuthentified() {
-        println("Authenticated")
+        //println("Authenticated")
     }
     
     func easyGameCenterNotAuthentified() {
-        println("Not Authenticated")
+        //println("Not Authenticated")
     }
     
     func bannerViewDidLoadAd(banner: ADBannerView!) {
