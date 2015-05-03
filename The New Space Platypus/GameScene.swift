@@ -644,6 +644,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
         let node = NSKeyedUnarchiver.unarchiveObjectWithFile(path!) as! SKEmitterNode
         node.position = point 
         
+        if motionEnabled {
+            if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+                EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.motionPhoneOnly.rawValue, score: seconds)
+            }
+            else {
+                EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.motionPadOnly.rawValue, score: seconds)
+            }
+        }
+        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+            EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.phoneOnly.rawValue, score: seconds)
+        }
+        else {
+            EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.padOnly.rawValue, score: seconds)
+        }
+        
         self.addChild(node)
 
         let label = SKLabelNode(fontNamed: "Helvetica")

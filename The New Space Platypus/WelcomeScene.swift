@@ -23,6 +23,15 @@ enum menuItemType: Int {
     kMenuItemTypeInvalid  //Touch is outside valid range
 }
 
+enum identifierString: String {
+    case general = "com.patersontech.combinedScores",
+    phoneOnly = "co.patersontech.iPhone",
+    padOnly = "co.patersontech.iPad",
+    motion = "co.patersontech.combinedMotion",
+    motionPhoneOnly = "co.patersontech.iPhoneMotion",
+    motionPadOnly = "co.patersontech.iPadMotion"
+}
+
 /**
 *  The enumeration for the collision types
 */
@@ -126,7 +135,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
             let doors = SKTransition.doorsOpenVerticalWithDuration(0.5)
             self.view?.presentScene(scene, transition: doors)
         case .kMenuItemTypeScores:
-            self.showLeaderboard()
+            EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: identifierString.general.rawValue)
         case .kMenuItemTypeAchievements:
                 self.showAchievements()
             case .kMenuItemTypeOptions:
@@ -366,6 +375,21 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         self.addChild(optionsBox)
         optionsBox.name = "optionsBox"
         
+        var scoreNode = SKLabelNode()
+        scoreNode.fontName = "Helvetica"
+        scoreNode.text = "Scores"
+        scoreNode.fontColor = SKColor.purpleColor()
+        scoreNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 237.5)
+        scoreNode.zPosition = 20
+        self.addChild(scoreNode)
+        
+        var scoreBox = SKShapeNode(rectOfSize: CGSizeMake(200, 50), cornerRadius: 5)
+        scoreBox.strokeColor = SKColor.greenColor()
+        scoreBox.position = scoreNode.position
+        scoreBox.position = CGPointMake(scoreBox.position.x, scoreBox.position.y + 10)
+        self.addChild(scoreBox)
+        scoreBox.name = "scoreBox"
+        
         self.addChild(optionsNode)
 //        self.addChild(achievementNode)
 //        self.addChild(scoreNode)
@@ -457,6 +481,9 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         }
         else if self.childNodeWithName("optionsBox")!.containsPoint(point) {
             return .kMenuItemTypeOptions
+        }
+        else if self.childNodeWithName("scoreBox")!.containsPoint(point) {
+            return .kMenuItemTypeScores
         }
         else {
             return .kMenuItemTypeInvalid

@@ -63,6 +63,10 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
 
+        EasyGameCenter.sharedInstance(self)
+        
+        EasyGameCenter.showGameCenterAuthentication()
+        
         let scene = WelcomeScene(size: self.view.frame.size)
 
         // Configure the view.
