@@ -10,7 +10,7 @@ import UIKit
 import SpriteKit
 import GameKit
 
-class GameViewController: UIViewController, ADBannerViewDelegate {
+class GameViewController: UIViewController, ADBannerViewDelegate, EasyGameCenterDelegate {
 
     var iAdBanner = ADBannerView()
     var bannerVisible = false
@@ -20,6 +20,14 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
         
     }
 
+    func easyGameCenterAuthentified() {
+        println("Authenticated")
+    }
+    
+    func easyGameCenterNotAuthentified() {
+        println("Not Authenticated")
+    }
+    
     func bannerViewDidLoadAd(banner: ADBannerView!) {
         if(bannerVisible == false) {
             
@@ -63,9 +71,7 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
     
     override func viewWillAppear(animated: Bool) {
 
-        EasyGameCenter.sharedInstance(self)
         
-        EasyGameCenter.showGameCenterAuthentication()
         
         let scene = WelcomeScene(size: self.view.frame.size)
 
@@ -88,6 +94,9 @@ class GameViewController: UIViewController, ADBannerViewDelegate {
             }
         }
 
+        EasyGameCenter.sharedInstance(self)
+        
+        EasyGameCenter.showGameCenterAuthentication()
     }
 
     override func shouldAutorotate() -> Bool {

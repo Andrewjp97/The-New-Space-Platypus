@@ -82,6 +82,8 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
     
     override func didMoveToView(view: SKView) {
         
+        EasyGameCenter.showGameCenterAuthentication()
+        
         if !contentCreated {
             
             self.createSceneContent()
