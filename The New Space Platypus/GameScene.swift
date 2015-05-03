@@ -10,6 +10,7 @@ import Foundation
 import SpriteKit
 import GameKit
 import CoreMotion
+import AudioToolbox
 
 class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
 
@@ -542,6 +543,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
             typeA == .Rock ? bodyA.node?.addChild(newSpark()) : bodyB.node?.addChild(newSpark())
             if !self.invincible {
                 hits++
+                self.userFeedback()
                 if hits < 3 {
                     self.handleInvincibility()
                 } else {
@@ -564,6 +566,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
 
     }
 
+    func userFeedback() {
+        
+        let node = SKShapeNode(rectOfSize: self.view!.bounds.size)
+        node.fillColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.6)
+        node.position = CGPointZero
+        self.addChild(node)
+        let action = SKAction.fadeAlphaTo(0, duration: 0.5)
+        node.runAction(action)
+        AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+        
+    }
+    
     /**
     *  Implements the functionality of the gravity powerup
     *
