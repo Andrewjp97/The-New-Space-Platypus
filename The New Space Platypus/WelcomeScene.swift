@@ -10,6 +10,7 @@ import SpriteKit
 import GameKit
 import iAd
 import AudioToolbox
+import AVFoundation
 
 /**
 *  The enumeration for the different menu item types
@@ -65,7 +66,7 @@ func randomNumberFunction(max: Double) -> Double {
 class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDelegate {
     
     var contentCreated: Bool = false
-    
+    var player: AVAudioPlayer = AVAudioPlayer()
    
     
     override init(size: CGSize) {
@@ -95,6 +96,9 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
         }
         
         // Prepare banner Ad
+        
+        
+        
         
         
         

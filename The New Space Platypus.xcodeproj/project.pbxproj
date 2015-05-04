@@ -11,6 +11,14 @@
 		AE1FADC31AEEC66800C1783F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1FADC11AEEC66800C1783F /* Main.storyboard */; };
 		AE1FADC51AEEC66800C1783F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE1FADC41AEEC66800C1783F /* Images.xcassets */; };
 		AE1FADD41AEEC66800C1783F /* The_New_Space_PlatypusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1FADD31AEEC66800C1783F /* The_New_Space_PlatypusTests.swift */; };
+		AE67D9B81AF6DB3B0025AF9E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9B71AF6DB3B0025AF9E /* Settings.bundle */; };
+		AE67D9BB1AF6DFD30025AF9E /* bgmusic.license in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9B91AF6DFD30025AF9E /* bgmusic.license */; };
+		AE67D9BC1AF6DFD30025AF9E /* script.pl in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9BA1AF6DFD30025AF9E /* script.pl */; };
+		AE67D9BE1AF6E0990025AF9E /* Adventure Meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9BD1AF6E0990025AF9E /* Adventure Meme.mp3 */; };
+		AE67D9C31AF6F6DA0025AF9E /* Clank.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9BF1AF6F6DA0025AF9E /* Clank.mp3 */; };
+		AE67D9C41AF6F6DA0025AF9E /* Grenade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9C01AF6F6DA0025AF9E /* Grenade.mp3 */; };
+		AE67D9C51AF6F6DA0025AF9E /* scifi011.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9C11AF6F6DA0025AF9E /* scifi011.mp3 */; };
+		AE67D9C81AF6F87A0025AF9E /* Servo Movement 02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9C71AF6F87A0025AF9E /* Servo Movement 02.mp3 */; };
 		AEA28C721AEEF20E00E40BB6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA28C711AEEF20E00E40BB6 /* Crashlytics.framework */; };
 		AED150D81AEEC7C300D1C1A0 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED150D71AEEC7C300D1C1A0 /* GameKit.framework */; };
 		AED150DA1AEEC95D00D1C1A0 /* CustomizeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED150D91AEEC95D00D1C1A0 /* CustomizeScene.swift */; };
@@ -51,6 +59,14 @@
 		AE1FADCD1AEEC66800C1783F /* The New Space PlatypusTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "The New Space PlatypusTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE1FADD21AEEC66800C1783F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE1FADD31AEEC66800C1783F /* The_New_Space_PlatypusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = The_New_Space_PlatypusTests.swift; sourceTree = "<group>"; };
+		AE67D9B71AF6DB3B0025AF9E /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		AE67D9B91AF6DFD30025AF9E /* bgmusic.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bgmusic.license; sourceTree = "<group>"; };
+		AE67D9BA1AF6DFD30025AF9E /* script.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = script.pl; sourceTree = "<group>"; };
+		AE67D9BD1AF6E0990025AF9E /* Adventure Meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Adventure Meme.mp3"; sourceTree = "<group>"; };
+		AE67D9BF1AF6F6DA0025AF9E /* Clank.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Clank.mp3; sourceTree = "<group>"; };
+		AE67D9C01AF6F6DA0025AF9E /* Grenade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Grenade.mp3; sourceTree = "<group>"; };
+		AE67D9C11AF6F6DA0025AF9E /* scifi011.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scifi011.mp3; sourceTree = "<group>"; };
+		AE67D9C71AF6F87A0025AF9E /* Servo Movement 02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Servo Movement 02.mp3"; sourceTree = "<group>"; };
 		AEA28C711AEEF20E00E40BB6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		AED150D71AEEC7C300D1C1A0 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		AED150D91AEEC95D00D1C1A0 /* CustomizeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizeScene.swift; sourceTree = "<group>"; };
@@ -115,9 +131,15 @@
 		AE1FADB61AEEC66800C1783F /* The New Space Platypus */ = {
 			isa = PBXGroup;
 			children = (
+				AE67D9B21AF6DA7F0025AF9E /* licenses */,
+				AE67D9C71AF6F87A0025AF9E /* Servo Movement 02.mp3 */,
+				AE67D9BD1AF6E0990025AF9E /* Adventure Meme.mp3 */,
 				AE1FADB91AEEC66800C1783F /* AppDelegate.swift */,
 				AED150DB1AEEC97100D1C1A0 /* GameScene.swift */,
 				AED3F18D1AF6BC5D00E9E9A1 /* EasyGameCenter.swift */,
+				AE67D9BF1AF6F6DA0025AF9E /* Clank.mp3 */,
+				AE67D9C01AF6F6DA0025AF9E /* Grenade.mp3 */,
+				AE67D9C11AF6F6DA0025AF9E /* scifi011.mp3 */,
 				AED150D91AEEC95D00D1C1A0 /* CustomizeScene.swift */,
 				AED150DD1AEEC9B700D1C1A0 /* GameViewController.swift */,
 				AED150DF1AEEC9C100D1C1A0 /* OptionsScene.swift */,
@@ -136,6 +158,7 @@
 				AED150EC1AEECA3900D1C1A0 /* MyParticle.sks */,
 				AE1FADC41AEEC66800C1783F /* Images.xcassets */,
 				AE1FADB71AEEC66800C1783F /* Supporting Files */,
+				AE67D9B71AF6DB3B0025AF9E /* Settings.bundle */,
 			);
 			path = "The New Space Platypus";
 			sourceTree = "<group>";
@@ -163,6 +186,15 @@
 				AE1FADD21AEEC66800C1783F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		AE67D9B21AF6DA7F0025AF9E /* licenses */ = {
+			isa = PBXGroup;
+			children = (
+				AE67D9B91AF6DFD30025AF9E /* bgmusic.license */,
+				AE67D9BA1AF6DFD30025AF9E /* script.pl */,
+			);
+			name = licenses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,14 +284,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AE67D9C31AF6F6DA0025AF9E /* Clank.mp3 in Resources */,
 				AED150F71AEECA4900D1C1A0 /* Stars.sks in Resources */,
+				AE67D9C81AF6F87A0025AF9E /* Servo Movement 02.mp3 in Resources */,
 				AED150F51AEECA4900D1C1A0 /* spark.png in Resources */,
 				AE1FADC51AEEC66800C1783F /* Images.xcassets in Resources */,
+				AE67D9BB1AF6DFD30025AF9E /* bgmusic.license in Resources */,
+				AE67D9BC1AF6DFD30025AF9E /* script.pl in Resources */,
 				AED150E81AEECA2200D1C1A0 /* bodyOnFire.sks in Resources */,
+				AE67D9B81AF6DB3B0025AF9E /* Settings.bundle in Resources */,
 				AED150F81AEECA4900D1C1A0 /* tail.sks in Resources */,
 				AED150F01AEECA4000D1C1A0 /* smallExplosion.sks in Resources */,
 				AED150ED1AEECA3900D1C1A0 /* MyExplosion.sks in Resources */,
+				AE67D9BE1AF6E0990025AF9E /* Adventure Meme.mp3 in Resources */,
+				AE67D9C51AF6F6DA0025AF9E /* scifi011.mp3 in Resources */,
 				AED150EE1AEECA3900D1C1A0 /* MyParticle.sks in Resources */,
+				AE67D9C41AF6F6DA0025AF9E /* Grenade.mp3 in Resources */,
 				AED150EA1AEECA2A00D1C1A0 /* confetti.png in Resources */,
 				AE1FADC31AEEC66800C1783F /* Main.storyboard in Resources */,
 				AED150F61AEECA4900D1C1A0 /* spark.sks in Resources */,

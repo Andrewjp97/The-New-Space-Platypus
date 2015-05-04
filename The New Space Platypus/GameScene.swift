@@ -263,6 +263,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
         let repeat = SKAction.repeatActionForever(sequence)
         
         self.runAction(repeat)
+        let action = SKAction.playSoundFileNamed("scifi011.mp3", waitForCompletion: false)
+        self.runAction(action)
         self.makeLifeBar()
         
     }
@@ -546,7 +548,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
                 self.userFeedback()
                 if hits < 3 {
                     self.handleInvincibility()
+                    let action = SKAction.playSoundFileNamed("Clank.mp3", waitForCompletion: false)
+                    self.runAction(action)
                 } else {
+                    let action = SKAction.playSoundFileNamed("Grenade.mp3", waitForCompletion: false)
+                    self.runAction(action)
                     self.shouldAcceptFurtherCollisions = false
                     self.shouldMakeMoreRocks = false
                 }
@@ -554,11 +560,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
         } else if (typeA == .Life || typeB == .Life) && (typeA == .Platypus || typeB == .Platypus) {
             hits--
             typeA == .Life ? bodyA.node?.removeFromParent() : bodyB.node?.removeFromParent()
+            let action = SKAction.playSoundFileNamed("Servo Movement 02.mp3", waitForCompletion: false)
+            self.runAction(action)
         } else if (typeA == .Gravity || typeB == .Gravity) && (typeA == .Platypus || typeB == .Platypus) {
             self.handleSlow()
+            let action = SKAction.playSoundFileNamed("Servo Movement 02.mp3", waitForCompletion: false)
+            self.runAction(action)
             typeA == .Gravity ? bodyA.node?.removeFromParent() : bodyB.node?.removeFromParent()
         } else if (typeA == .Shield || typeB == .Shield) && (typeA == .Platypus || typeB == .Platypus) {
             self.handleInvincibility()
+            let action = SKAction.playSoundFileNamed("Servo Movement 02.mp3", waitForCompletion: false)
+            self.runAction(action)
             typeA == .Shield ? bodyA.node?.removeFromParent() : bodyB.node?.removeFromParent()
         }
 

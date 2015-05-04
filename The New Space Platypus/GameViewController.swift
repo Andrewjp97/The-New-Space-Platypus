@@ -9,11 +9,13 @@ import iAd
 import UIKit
 import SpriteKit
 import GameKit
+import AVFoundation
 
 class GameViewController: UIViewController, ADBannerViewDelegate, EasyGameCenterDelegate {
 
     var iAdBanner = ADBannerView()
     var bannerVisible = false
+    var player = AVAudioPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,6 +99,15 @@ class GameViewController: UIViewController, ADBannerViewDelegate, EasyGameCenter
         EasyGameCenter.sharedInstance(self)
         
         EasyGameCenter.showGameCenterAuthentication()
+        
+        var err: NSError?
+        player = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Adventure Meme", ofType: "mp3")!), error: &err)
+        
+        player.prepareToPlay()
+        
+        player.numberOfLoops = -1
+        player.volume = 0.15
+        player.play()
     }
 
     override func shouldAutorotate() -> Bool {
