@@ -48,7 +48,7 @@ class CustomizeScene: SKScene {
 
 
         // If the parent optional has a value, unwrap it and assign it to self
-        if let sceneParent = parent {
+        if parent != nil {
             self.parentScene = parent!
         }
 
@@ -61,11 +61,11 @@ class CustomizeScene: SKScene {
             var counter: Int = 0
             for platypusType in platypusTypes {
                 if counter < 6 {
-                    counter++
+                    counter += 1
                     self.platypusTypes.append(platypusType)
                 } else {
                     subarray.append(platypusType)
-                    counter++
+                    counter += 1
                 }
             }
 
@@ -81,10 +81,10 @@ class CustomizeScene: SKScene {
         super.init(coder: aDecoder)
     }
 
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         if !self.contentCreated {
             self.layoutPlatapi()
-            self.backgroundColor = SKColor.blackColor()
+            self.backgroundColor = SKColor.black
             self.makeStars()
 
             let arrowTuple = self.makeAppropriateArrows()
@@ -110,10 +110,10 @@ class CustomizeScene: SKScene {
         var leftArrow: SKSpriteNode?
         
         if self.child != nil {
-            var node = SKSpriteNode(imageNamed: "rightArrow")
-            node.position = CGPointMake(CGRectGetMidX(self.frame) + 100, 80)
-            if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-                node.position = CGPointMake(CGRectGetMidX(self.frame) + 100, 300)
+            let node = SKSpriteNode(imageNamed: "rightArrow")
+            node.position = CGPoint(x: self.frame.midX + 100, y: 80)
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                node.position = CGPoint(x: self.frame.midX + 100, y: 300)
             }
             node.name = "rightArrow"
             rightArrow = node
@@ -121,10 +121,10 @@ class CustomizeScene: SKScene {
         }
         
         if self.parentScene != nil {
-            var node = SKSpriteNode(imageNamed: "leftArrow")
-            node.position = CGPointMake(CGRectGetMidX(self.frame) - 100, 80)
-            if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-                node.position = CGPointMake(CGRectGetMidX(self.frame) - 100, 300)
+            let node = SKSpriteNode(imageNamed: "leftArrow")
+            node.position = CGPoint(x: self.frame.midX - 100, y: 80)
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                node.position = CGPoint(x: self.frame.midX - 100, y: 300)
             }
             node.name = "leftArrow"
             leftArrow = node
@@ -144,78 +144,78 @@ class CustomizeScene: SKScene {
             let node: SKSpriteNode = PlatypusNode(type: type)
             switch index {
             case 0:
-                node.position = CGPointMake(CGRectGetMidX(self.frame)-80, CGRectGetMidY(self.frame) + 150)
+                node.position = CGPoint(x: self.frame.midX-80, y: self.frame.midY + 150)
             case 1:
-                node.position = CGPointMake(CGRectGetMidX(self.frame)+80, CGRectGetMidY(self.frame) + 150)
+                node.position = CGPoint(x: self.frame.midX+80, y: self.frame.midY + 150)
             case 2:
-                node.position = CGPointMake(CGRectGetMidX(self.frame)-80, CGRectGetMidY(self.frame) + 30)
+                node.position = CGPoint(x: self.frame.midX-80, y: self.frame.midY + 30)
             case 3:
-                node.position = CGPointMake(CGRectGetMidX(self.frame)+80, CGRectGetMidY(self.frame) + 30)
+                node.position = CGPoint(x: self.frame.midX+80, y: self.frame.midY + 30)
             case 4:
-                node.position = CGPointMake(CGRectGetMidX(self.frame)-80, CGRectGetMidY(self.frame) - 90)
+                node.position = CGPoint(x: self.frame.midX-80, y: self.frame.midY - 90)
             case 5:
-                node.position = CGPointMake(CGRectGetMidX(self.frame)+80, CGRectGetMidY(self.frame) - 90)
+                node.position = CGPoint(x: self.frame.midX+80, y: self.frame.midY - 90)
             default:
-                node.position = CGPointZero
+                node.position = CGPoint.zero
             }
             self.addChild(node)
-            index++
+            index += 1
         }
 
         let node = SKLabelNode(fontNamed: "Helvetica")
         node.text = "Back"
         node.name = "back"
-        node.fontColor = SKColor.whiteColor()
+        node.fontColor = SKColor.white
         node.fontSize = 24
-        node.position = CGPointMake(10 + (0.5 * node.frame.size.width), CGRectGetMaxY(self.frame) - 20 - (0.5 * node.frame.size.height))
-        if UIDevice.currentDevice().userInterfaceIdiom == .Pad {
-            node.position = CGPointMake(20 + (0.5 * node.frame.size.width), CGRectGetMaxY(self.frame) - 40 - (0.5 * node.frame.size.height))
+        node.position = CGPoint(x: 10 + (0.5 * node.frame.size.width), y: self.frame.maxY - 20 - (0.5 * node.frame.size.height))
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            node.position = CGPoint(x: 20 + (0.5 * node.frame.size.width), y: self.frame.maxY - 40 - (0.5 * node.frame.size.height))
         }
         self.addChild(node)
 
     }
 
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        self.enumerateChildNodesWithName("PlatypusBody", usingBlock: {(node, stop) in
-            let touch = touches.first as! UITouch
-            if (node.containsPoint(touch.locationInNode(self))) {
+        self.enumerateChildNodes(withName: "PlatypusBody", using: {(node, stop) in
+            let touch = touches.first!
+            if (node.contains(touch.location(in: self))) {
                 self.highlightNode(node as! PlatypusNode)
                 return
             }
         })
 
-        let leftArrowBlock: (SKNode!, UnsafeMutablePointer<ObjCBool>) -> Void = ({(node, stop) in
-            let touch = touches.first as! UITouch
-            if (node.containsPoint(touch.locationInNode(self))) {
-                let transition = SKTransition.pushWithDirection(SKTransitionDirection.Right, duration: 0.25)
-                self.scene?.view!.presentScene(self.parentScene, transition: transition)
+        let leftArrowBlock: (SKNode?, UnsafeMutablePointer<ObjCBool>) -> Void = ({(node, stop) in
+            let touch = touches.first!
+            if (node?.contains(touch.location(in: self)))! {
+                let transition = SKTransition.push(with: SKTransitionDirection.right, duration: 0.25)
+                self.scene?.view!.presentScene(self.parentScene!, transition: transition)
                 return
             }
         })
 
-        self.enumerateChildNodesWithName("leftArrow", usingBlock: leftArrowBlock)
+        self.enumerateChildNodes(withName: "leftArrow", using: leftArrowBlock)
 
-        let rightArrowBlock: (SKNode!, UnsafeMutablePointer<ObjCBool>) -> Void = ({(node, stop) in
-            let touch = touches.first as! UITouch
-            if (node.containsPoint(touch.locationInNode(self))) {
-                let transition = SKTransition.pushWithDirection(SKTransitionDirection.Left, duration: 0.25)
-                self.scene?.view!.presentScene(self.child, transition: transition)
+        let rightArrowBlock: (SKNode?, UnsafeMutablePointer<ObjCBool>) -> Void = ({(node, stop) in
+            let touch = touches.first!
+            if (node?.contains(touch.location(in: self)))! {
+                let transition = SKTransition.push(with: SKTransitionDirection.left, duration: 0.25)
+                self.scene?.view!.presentScene(self.child!, transition: transition)
                 return
             }
         })
 
-        self.enumerateChildNodesWithName("rightArrow", usingBlock: rightArrowBlock)
+        self.enumerateChildNodes(withName: "rightArrow", using: rightArrowBlock)
 
-        let backButtonBlock: (SKNode!, UnsafeMutablePointer<ObjCBool>) -> Void = ({(node, stop) in
-            let touch = touches.first as! UITouch
-            if (node.containsPoint(touch.locationInNode(self))) {
-                let transition = SKTransition.doorsCloseVerticalWithDuration(0.5)
+        let backButtonBlock: (SKNode?, UnsafeMutablePointer<ObjCBool>) -> Void = ({(node, stop) in
+            let touch = touches.first!
+            if (node?.contains(touch.location(in: self)))! {
+                let transition = SKTransition.doorsCloseVertical(withDuration: 0.5)
                 self.scene?.view!.presentScene(WelcomeScene(size: self.size), transition: transition)
             }
         })
 
-        self.enumerateChildNodesWithName("back", usingBlock: backButtonBlock)
+        self.enumerateChildNodes(withName: "back", using: backButtonBlock)
     }
 
     /**
@@ -225,7 +225,7 @@ class CustomizeScene: SKScene {
     *
     *  @return Void
     */
-    func highlightNode(node: PlatypusNode) {
+    func highlightNode(_ node: PlatypusNode) {
         if let color = node.type {
             platypusColor = color
         }
@@ -235,8 +235,8 @@ class CustomizeScene: SKScene {
         if let node = self.parentScene {
             node.unhighlightAnyNodes(false)
         }
-        let block: (SKNode!, UnsafeMutablePointer<ObjCBool>) -> Void = ({ (node, stop) in node.removeFromParent() })
-        self.enumerateChildNodesWithName("selection", usingBlock: block)
+        let block: (SKNode?, UnsafeMutablePointer<ObjCBool>) -> Void = ({ (node, stop) in node!.removeFromParent() })
+        self.enumerateChildNodes(withName: "selection", using: block)
         let selection = SKSpriteNode(imageNamed: "BackgroundSelected")
         selection.name = "selection"
         selection.position = node.position
@@ -252,9 +252,9 @@ class CustomizeScene: SKScene {
     *
     *  @return Void
     */
-    func unhighlightAnyNodes(sendToChild: Bool) {
-        let block: (SKNode!, UnsafeMutablePointer<ObjCBool>) -> Void = ({(node, stop) in node.removeFromParent() })
-        self.enumerateChildNodesWithName("selection", usingBlock: block)
+    func unhighlightAnyNodes(_ sendToChild: Bool) {
+        let block: (SKNode?, UnsafeMutablePointer<ObjCBool>) -> Void = ({(node, stop) in node!.removeFromParent() })
+        self.enumerateChildNodes(withName: "selection", using: block)
         // Recursion: if this message came from a parent, we want to send it down the chain of children
         if sendToChild {
             if let node = self.child {
@@ -276,10 +276,10 @@ class CustomizeScene: SKScene {
     */
     func makeStars() {
 
-        let path = NSBundle.mainBundle().pathForResource("Stars", ofType: "sks")
-        let stars: SKEmitterNode = NSKeyedUnarchiver.unarchiveObjectWithFile(path!) as! SKEmitterNode
-        stars.particlePosition = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame))
-        stars.particlePositionRange = CGVectorMake(CGRectGetWidth(self.frame), 0)
+        let path = Bundle.main.path(forResource: "Stars", ofType: "sks")
+        let stars: SKEmitterNode = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
+        stars.particlePosition = CGPoint(x: self.frame.midX, y: self.frame.maxY)
+        stars.particlePositionRange = CGVector(dx: self.frame.width, dy: 0)
         stars.zPosition = -2
         self.addChild(stars)
         stars.advanceSimulationTime(10.0)

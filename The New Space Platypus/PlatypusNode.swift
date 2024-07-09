@@ -16,7 +16,7 @@ class PlatypusNode: SKSpriteNode {
     */
     var type: kPlatypusColor?
     
-    override init(texture: SKTexture!, color: UIColor!, size: CGSize) {
+    override init(texture: SKTexture!, color: UIColor, size: CGSize) {
         super.init(texture: texture, color: color, size: size)
     }
     
@@ -28,7 +28,7 @@ class PlatypusNode: SKSpriteNode {
     init(type: kPlatypusColor) {
         
         //super.init(imageNamed: imageNameForPlatypusColor(type))
-        super.init(texture: nil, color: nil, size: CGSizeZero)
+        super.init(texture: nil, color: UIColor.clear, size: CGSize.zero)
         self.texture = SKTexture(imageNamed: imageNameForPlatypusColor(type))
         if let texture = self.texture {
             self.size = texture.size()
@@ -37,16 +37,16 @@ class PlatypusNode: SKSpriteNode {
         
         self.name = "PlatypusBody"
         
-        self.physicsBody = SKPhysicsBody(rectangleOfSize: self.size)
-        self.physicsBody?.dynamic = false
-        self.physicsBody?.contactTestBitMask = ColliderType.Rock.rawValue | ColliderType.Life.rawValue
-        self.physicsBody?.categoryBitMask = ColliderType.Platypus.rawValue
-        self.physicsBody?.collisionBitMask = ColliderType.Rock.rawValue
+        self.physicsBody = SKPhysicsBody(rectangleOf: self.size)
+        self.physicsBody?.isDynamic = false
+        self.physicsBody?.contactTestBitMask = ColliderType.rock.rawValue | ColliderType.life.rawValue
+        self.physicsBody?.categoryBitMask = ColliderType.platypus.rawValue
+        self.physicsBody?.collisionBitMask = ColliderType.rock.rawValue
         
         if type == kPlatypusColor.kPlatypusColorFire {
             
-            let path = NSBundle.mainBundle().pathForResource("bodyOnFire", ofType: "sks")
-            let flame: SKEmitterNode = NSKeyedUnarchiver.unarchiveObjectWithFile(path!) as! SKEmitterNode
+            let path = Bundle.main.path(forResource: "bodyOnFire", ofType: "sks")
+            let flame: SKEmitterNode = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
             flame.position = self.position
             flame.zPosition = 9
             self.addChild(flame)
@@ -54,24 +54,24 @@ class PlatypusNode: SKSpriteNode {
         }
         
         let eyeOne = newEye()
-        eyeOne.position = CGPointMake(-10, 16)
+        eyeOne.position = CGPoint(x: -10, y: 16)
         eyeOne.zPosition = 100
         self.addChild(eyeOne)
         
         let eyeTwo = newEye()
-        eyeTwo.position = CGPointMake(10, 16)
+        eyeTwo.position = CGPoint(x: 10, y: 16)
         eyeTwo.zPosition = 100
         self.addChild(eyeTwo)
         
-        let path = NSBundle.mainBundle().pathForResource("MyParticle", ofType: "sks")
-        let exhaust: SKEmitterNode = NSKeyedUnarchiver.unarchiveObjectWithFile(path!) as! SKEmitterNode
-        exhaust.position = CGPointMake(0, -32)
+        let path = Bundle.main.path(forResource: "MyParticle", ofType: "sks")
+        let exhaust: SKEmitterNode = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
+        exhaust.position = CGPoint(x: 0, y: -32)
         self.addChild(exhaust)
 
     }
 
     required init?(coder aDecoder: NSCoder) {
-        super.init(texture: nil, color: nil, size: CGSizeZero)
+        super.init(texture: nil, color: UIColor.clear, size: CGSize.zero)
     }
     
     /**
@@ -102,16 +102,16 @@ class PlatypusNode: SKSpriteNode {
             SKTexture(imageNamed: "EyeBlinking18"),
             SKTexture(imageNamed: "EyeBlinking19")]
         
-        var light = SKSpriteNode(imageNamed: "EyeOpen")
+        let light = SKSpriteNode(imageNamed: "EyeOpen")
         
-        var blinkClose = SKAction.animateWithTextures(textures, timePerFrame: 0.005)
+        let blinkClose = SKAction.animate(with: textures, timePerFrame: 0.005)
         
-        var blink = SKAction.sequence([blinkClose, SKAction.waitForDuration(0.025),
-            blinkClose.reversedAction(), SKAction.waitForDuration(3.0)])
+        let blink = SKAction.sequence([blinkClose, SKAction.wait(forDuration: 0.025),
+            blinkClose.reversed(), SKAction.wait(forDuration: 3.0)])
         
-        var blinkForever = SKAction.repeatActionForever(blink)
+        let blinkForever = SKAction.repeatForever(blink)
         
-        light.runAction(blinkForever)
+        light.run(blinkForever)
         
         return  light
         

@@ -18,9 +18,9 @@ import AVFoundation
 enum menuItemType: Int {
     case kMenuItemTypePlay = 1,//Play Butten
     kMenuItemTypeCustomize,  //Customize Button
-    kMenuItemTypeScores,  //Scores Button, brings up game center view
-    kMenuItemTypeAchievements,  //Achievments Button, brings up game center view
-    kMenuItemTypeOptions,  //Options Button
+//   // TODO: DELETE:  kMenuItemTypeScores,  //Scores Button, brings up game center view
+////    kMenuItemTypeAchievements,  //Achievments Button, brings up game center view
+   kMenuItemTypeOptions,  //Options Button
     kMenuItemTypeInvalid  //Touch is outside valid range
 }
 
@@ -37,11 +37,11 @@ enum identifierString: String {
 *  The enumeration for the collision types
 */
 enum ColliderType: UInt32 {
-    case Rock = 1
-    case Life = 2
-    case Platypus = 4
-    case Gravity = 8
-    case Shield = 16
+    case rock = 1
+    case life = 2
+    case platypus = 4
+    case gravity = 8
+    case shield = 16
 }
 
 
@@ -54,16 +54,16 @@ var lastRandom: Double = 0
 *
 *  @return The random number
 */
-func randomNumberFunction(max: Double) -> Double {
+func randomNumberFunction(_ max: Double) -> Double {
     if lastRandom == 0 {
-        lastRandom = NSDate.timeIntervalSinceReferenceDate()
+        lastRandom = Date.timeIntervalSinceReferenceDate
     }
-    var newRand =  ((lastRandom * M_PI) * 11048.6954) % max
+    let newRand =  ((lastRandom * Double.pi) * 11048.6954).truncatingRemainder(dividingBy: max)
     lastRandom = newRand
     return newRand
 }
 
-class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDelegate {
+class WelcomeScene: SKScene, SKPhysicsContactDelegate {
     
     var contentCreated: Bool = false
     var player: AVAudioPlayer = AVAudioPlayer()
@@ -81,15 +81,15 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
     
     
     
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
                 
         if !contentCreated {
             
             self.createSceneContent()
             contentCreated = true
             
-            UIApplication.sharedApplication().statusBarStyle = .LightContent
-            self.view?.userInteractionEnabled = true
+            UIApplication.shared.statusBarStyle = .lightContent
+            self.view?.isUserInteractionEnabled = true
             
             self.physicsWorld.contactDelegate = self
             
@@ -106,26 +106,26 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
     
     
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
-        let touch = touches.first as! UITouch
-        let point = touch.locationInNode(self)
+        let touch = touches.first!
+        let point = touch.location(in: self)
         
         let menuItemType = whatMenuItemTypeIsAtPoint(point)
         
         switch menuItemType {
             
         case .kMenuItemTypePlay:
-            let helloNode = self.childNodeWithName("HelloNode")
+            let helloNode = self.childNode(withName: "HelloNode")
             if helloNode != nil {
                 helloNode?.name = nil
-                let zoom = SKAction.scaleTo(0.05, duration: 0.25)
-                let fade = SKAction.fadeOutWithDuration(0.25)
+                let zoom = SKAction.scale(to: 0.05, duration: 0.25)
+                let fade = SKAction.fadeOut(withDuration: 0.25)
                 let remove = SKAction.removeFromParent()
                 let sequence = SKAction.sequence([zoom, fade, remove])
-                helloNode?.runAction(sequence, completion: ({
+                helloNode?.run(sequence, completion: ({
                     let scene = GameScene(size: self.size)
-                    let doors = SKTransition.doorsOpenVerticalWithDuration(0.25)
+                    let doors = SKTransition.doorsOpenVertical(withDuration: 0.25)
                     self.view?.presentScene(scene, transition: doors)
                 }))
             }
@@ -136,15 +136,15 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
                     .kPlatypusColorDareDevil, .kPlatypusColorSanta, .kPlatypusColorElf,
                     .kPlatypusColorChirstmasTree, .kPlatypusColorRaindeer, .kPlatypusColorFire])
             
-            let doors = SKTransition.doorsOpenVerticalWithDuration(0.5)
+            let doors = SKTransition.doorsOpenVertical(withDuration: 0.5)
             self.view?.presentScene(scene, transition: doors)
-        case .kMenuItemTypeScores:
-            EasyGameCenter.showGameCenterLeaderboard(leaderboardIdentifier: identifierString.general.rawValue)
-        case .kMenuItemTypeAchievements:
-                self.showAchievements()
+     // TODO: DELETE:    case .kMenuItemTypeScores:
+         // TODO: DELETE:    EasyGameCenter.showGameCenterLeaderboard(completion: identifierString.general.rawValue)
+        // TODO: DELETE: case .kMenuItemTypeAchievements:
+         // TODO: DELETE:        self.showAchievements()
             case .kMenuItemTypeOptions:
                 let scene = OptionsScene(size: self.size)
-                let doors = SKTransition.doorsOpenVerticalWithDuration(0.5)
+                let doors = SKTransition.doorsOpenVertical(withDuration: 0.5)
                 self.view?.presentScene(scene, transition: doors)
             case .kMenuItemTypeInvalid:
                 return
@@ -160,11 +160,11 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
     */
     override func didSimulatePhysics() {
 
-        let completionBlock: (SKNode!, UnsafeMutablePointer<ObjCBool>) -> Void = {incoming, stop in
+        let completionBlock: (SKNode?, UnsafeMutablePointer<ObjCBool>) -> Void = {incoming, stop in
 
             if let node = incoming {
 
-                if node.position.y < 0 || node.position.y > CGRectGetMaxY(self.frame) + 100 || node.position.x < 0 || node.position.x > CGRectGetMaxX(self.frame) {
+                if node.position.y < 0 || node.position.y > self.frame.maxY + 100 || node.position.x < 0 || node.position.x > self.frame.maxX {
 
                     node.removeFromParent()
 
@@ -172,22 +172,22 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
             }
         }
 
-        self.enumerateChildNodesWithName("rock", usingBlock: completionBlock)
+        self.enumerateChildNodes(withName: "rock", using: completionBlock)
 
     }
 
-    /**
-    *  The Game Center Delegate Callback Method: Called when the controller is dismissed
-    *
-    *  @param GKGameCenterViewController! The controller being dismissed
-    *
-    *  @return Void
-    */
-    func gameCenterViewControllerDidFinish(gameCenterViewController: GKGameCenterViewController!) {
-
-        self.view?.window?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
-
-    }
+// // TODO: DELETE:    /**
+//    *  The Game Center Delegate Callback Method: Called when the controller is dismissed
+//    *
+//    *  @param GKGameCenterViewController! The controller being dismissed
+//    *
+//    *  @return Void
+//    */
+//    func gameCenterViewControllerDidFinish(_ gameCenterViewController: GKGameCenterViewController!) {
+//
+//        self.view?.window?.rootViewController?.dismiss(animated: true, completion: nil)
+//
+//    }
 
     /**
     *  Creates the scene content
@@ -196,14 +196,14 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
     */
     func createSceneContent() {
 
-        self.backgroundColor = SKColor.blackColor()
-        self.scaleMode = SKSceneScaleMode.AspectFit
+        self.backgroundColor = SKColor.black
+        self.scaleMode = SKSceneScaleMode.aspectFit
 
         self.makeStars()
         self.makeMenuNodes()
         
         let platypus = PlatypusNode(type: platypusColor)
-        platypus.position  = CGPointMake(self.frame.size.width / 2, self.frame.size.height - 100)
+        platypus.position  = CGPoint(x: self.frame.size.width / 2, y: self.frame.size.height - 100)
         self.addChild(platypus)
         
         self.playSpaceship()
@@ -218,21 +218,21 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
     */
     func playSpaceship() {
 
-        let action1 = SKAction.moveBy(CGVectorMake(85, 10.0), duration: 0.5)
-        let action2 = SKAction.moveBy(CGVectorMake(-50.0, -50.0), duration: 1.0)
-        let action3 = SKAction.moveBy(CGVectorMake(-130.0, -50.0), duration: 0.75)
-        let action4 = SKAction.moveBy(CGVectorMake(-5.0, 30.0), duration: 0.75)
-        let action5 = SKAction.moveBy(CGVectorMake(75.0, 20.0), duration: 0.5)
-        let action6 = SKAction.moveBy(CGVectorMake(35.0, 25.0), duration: 1.0)
-        let action7 = SKAction.moveBy(CGVectorMake(10.0, -10.0), duration: 0.5)
-        let action8 = SKAction.moveBy(CGVectorMake(55.0, 50.0), duration: 0.25)
+        let action1 = SKAction.move(by: CGVector(dx: 85, dy: 10.0), duration: 0.5)
+        let action2 = SKAction.move(by: CGVector(dx: -50.0, dy: -50.0), duration: 1.0)
+        let action3 = SKAction.move(by: CGVector(dx: -130.0, dy: -50.0), duration: 0.75)
+        let action4 = SKAction.move(by: CGVector(dx: -5.0, dy: 30.0), duration: 0.75)
+        let action5 = SKAction.move(by: CGVector(dx: 75.0, dy: 20.0), duration: 0.5)
+        let action6 = SKAction.move(by: CGVector(dx: 35.0, dy: 25.0), duration: 1.0)
+        let action7 = SKAction.move(by: CGVector(dx: 10.0, dy: -10.0), duration: 0.5)
+        let action8 = SKAction.move(by: CGVector(dx: 55.0, dy: 50.0), duration: 0.25)
         let sequence = SKAction.sequence([action1, action2, action3, action4,
                                           action5, action6, action7, action6,
                                           action5, action4, action3, action2, action8])
-        let repeat = SKAction.repeatActionForever(sequence)
+        let repeatStep = SKAction.repeatForever(sequence)
 
-        let platypus = self.childNodeWithName("PlatypusBody")
-        platypus?.runAction(repeat)
+        let platypus = self.childNode(withName: "PlatypusBody")
+        platypus?.run(repeatStep)
         
     }
 
@@ -242,23 +242,23 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
     *  @return Void
     */
     func addRock() {
-        let rock = SKSpriteNode(color: SKColor(red: 0.67647, green:0.51568, blue:0.29216, alpha:1.0), size: CGSizeMake(8, 8))
+        let rock = SKSpriteNode(color: SKColor(red: 0.67647, green:0.51568, blue:0.29216, alpha:1.0), size: CGSize(width: 8, height: 8))
 
-        let width: CGFloat = CGRectGetWidth(self.frame)
+        let width: CGFloat = self.frame.width
         let widthAsDouble: Double = Double(width)
         let randomNum = randomNumberFunction(widthAsDouble)
         let randomNumAsCGFloat: CGFloat = randomNum.CGFloatValue
-        let point = CGPointMake(randomNumAsCGFloat, CGRectGetHeight(self.frame))
+        let point = CGPoint(x: randomNumAsCGFloat, y: self.frame.height)
 
         rock.position = point
         rock.name = "rock"
-        rock.physicsBody = SKPhysicsBody(rectangleOfSize: rock.size)
+        rock.physicsBody = SKPhysicsBody(rectangleOf: rock.size)
         rock.physicsBody?.usesPreciseCollisionDetection = true
-        rock.physicsBody?.categoryBitMask = ColliderType.Rock.rawValue
-        rock.physicsBody?.contactTestBitMask = ColliderType.Rock.rawValue | ColliderType.Shield.rawValue
-        rock.physicsBody?.collisionBitMask = ColliderType.Rock.rawValue | ColliderType.Platypus.rawValue
+        rock.physicsBody?.categoryBitMask = ColliderType.rock.rawValue
+        rock.physicsBody?.contactTestBitMask = ColliderType.rock.rawValue | ColliderType.shield.rawValue
+        rock.physicsBody?.collisionBitMask = ColliderType.rock.rawValue | ColliderType.platypus.rawValue
         self.addChild(rock)
-        rock.physicsBody?.applyImpulse(CGVectorMake(0, -0.75))
+        rock.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -0.75))
 
 
     }
@@ -270,10 +270,10 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
     */
     func makeStars() {
 
-        let path = NSBundle.mainBundle().pathForResource("Stars", ofType: "sks")
-        let stars: SKEmitterNode = NSKeyedUnarchiver.unarchiveObjectWithFile(path!) as! SKEmitterNode
-        stars.particlePosition = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame))
-        stars.particlePositionRange = CGVectorMake(CGRectGetWidth(self.frame), 0)
+        let path = Bundle.main.path(forResource: "Stars", ofType: "sks")
+        let stars: SKEmitterNode = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
+        stars.particlePosition = CGPoint(x: self.frame.midX, y: self.frame.maxY)
+        stars.particlePositionRange = CGVector(dx: self.frame.width, dy: 0)
         stars.zPosition = -2
         self.addChild(stars)
         stars.advanceSimulationTime(10.0)
@@ -287,67 +287,67 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
     */
     func makeMenuNodes() {
 
-        var helloNode = SKLabelNode()
+        let helloNode = SKLabelNode()
         helloNode.fontName = "Menlo-BoldItalic"
         helloNode.text = "Space Platypus"
         helloNode.fontSize = 32
-        helloNode.position = CGPointMake(CGRectGetMidX(self.frame) + 8, CGRectGetMidY(self.frame) + 7)
+        helloNode.position = CGPoint(x: self.frame.midX + 8, y: self.frame.midY + 57)
         helloNode.name = "HelloNode"
         helloNode.zPosition = 19
-        helloNode.fontColor = SKColor.darkGrayColor()
+        helloNode.fontColor = SKColor.darkGray
         
-        var helloNode111 = SKLabelNode()
+        let helloNode111 = SKLabelNode()
         helloNode111.fontName = "Menlo-BoldItalic"
         helloNode111.text = "The New"
         helloNode111.fontSize = 36
-        helloNode111.position = CGPointMake(CGRectGetMidX(self.frame) - 70, CGRectGetMidY(self.frame) + 46)
+        helloNode111.position = CGPoint(x: self.frame.midX - 70, y: self.frame.midY + 96)
         helloNode111.name = "HelloNode"
         helloNode111.zPosition = 19
-        helloNode111.fontColor = SKColor.darkGrayColor()
+        helloNode111.fontColor = SKColor.darkGray
         self.addChild(helloNode111)
         
-        var helloNode1111 = SKLabelNode()
+        let helloNode1111 = SKLabelNode()
         helloNode1111.fontName = "Menlo-BoldItalic"
         helloNode1111.text = "The New"
         helloNode1111.fontSize = 36
-        helloNode1111.position = CGPointMake(CGRectGetMidX(self.frame) - 73, CGRectGetMidY(self.frame) + 49)
+        helloNode1111.position = CGPoint(x: self.frame.midX - 73, y: self.frame.midY + 99)
         helloNode1111.name = "HelloNode"
         helloNode1111.zPosition = 19
         self.addChild(helloNode1111)
 
-        var helloNode1 = SKLabelNode()
+        let helloNode1 = SKLabelNode()
         helloNode1.fontName = "Menlo-BoldItalic"
         helloNode1.text = "Space Platypus"
         helloNode1.fontSize = 32
-        helloNode1.position = CGPointMake(CGRectGetMidX(self.frame) + 5, CGRectGetMidY(self.frame) + 10)
+        helloNode1.position = CGPoint(x: self.frame.midX + 5, y: self.frame.midY + 60)
         helloNode1.name = "HelloNode"
         helloNode1.zPosition = 20
 
-        var playNode = SKLabelNode()
+        let playNode = SKLabelNode()
         playNode.fontName = "Helvetica"
         playNode.text = "Play"
-        playNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 50)
-        playNode.fontColor = SKColor.redColor()
+        playNode.position = CGPoint(x: self.frame.midX, y: self.frame.midY - 0)
+        playNode.fontColor = SKColor.red
         playNode.zPosition = 20
         
-        var playBox = SKShapeNode(rectOfSize: CGSizeMake(200, 50), cornerRadius: 5)
-        playBox.strokeColor = SKColor.redColor()
+        let playBox = SKShapeNode(rectOf: CGSize(width: 200, height: 50), cornerRadius: 5)
+        playBox.strokeColor = SKColor.red
         playBox.position = playNode.position
-        playBox.position = CGPointMake(playBox.position.x, playBox.position.y + 10)
+        playBox.position = CGPoint(x: playBox.position.x, y: playBox.position.y + 10)
         self.addChild(playBox)
         playBox.name = "playBox"
 
-        var customizeNode = SKLabelNode()
+        let customizeNode = SKLabelNode()
         customizeNode.fontName = "Helvetica"
         customizeNode.text = "Customize"
-        customizeNode.fontColor = SKColor.yellowColor()
-        customizeNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 112.5)
+        customizeNode.fontColor = SKColor.yellow
+        customizeNode.position = CGPoint(x: self.frame.midX, y: self.frame.midY - 62.5)
         customizeNode.zPosition = 20
         
-        var customizeBox = SKShapeNode(rectOfSize: CGSizeMake(200, 50), cornerRadius: 5)
-        customizeBox.strokeColor = SKColor.yellowColor()
+        let customizeBox = SKShapeNode(rectOf: CGSize(width: 200, height: 50), cornerRadius: 5)
+        customizeBox.strokeColor = SKColor.yellow
         customizeBox.position = customizeNode.position
-        customizeBox.position = CGPointMake(customizeBox.position.x, customizeBox.position.y + 10)
+        customizeBox.position = CGPoint(x: customizeBox.position.x, y: customizeBox.position.y + 10)
         self.addChild(customizeBox)
         customizeBox.name = "customizeBox"
 
@@ -365,34 +365,34 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
 //        achievementNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 144)
 //        achievementNode.zPosition = 20
 
-        var optionsNode = SKLabelNode()
+        let optionsNode = SKLabelNode()
         optionsNode.fontName = "Helvetica"
         optionsNode.text = "Options"
-        optionsNode.fontColor = SKColor.greenColor()
-        optionsNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 175)
+        optionsNode.fontColor = SKColor.green
+        optionsNode.position = CGPoint(x: self.frame.midX, y: self.frame.midY - 125)
         optionsNode.zPosition = 20
 
-        var optionsBox = SKShapeNode(rectOfSize: CGSizeMake(200, 50), cornerRadius: 5)
-        optionsBox.strokeColor = SKColor.greenColor()
+        let optionsBox = SKShapeNode(rectOf: CGSize(width: 200, height: 50), cornerRadius: 5)
+        optionsBox.strokeColor = SKColor.green
         optionsBox.position = optionsNode.position
-        optionsBox.position = CGPointMake(optionsBox.position.x, optionsBox.position.y + 10)
+        optionsBox.position = CGPoint(x: optionsBox.position.x, y: optionsBox.position.y + 10)
         self.addChild(optionsBox)
         optionsBox.name = "optionsBox"
+//        
+//       TODO: DELETE: let scoreNode = SKLabelNode()
+//        scoreNode.fontName = "Helvetica"
+//        scoreNode.text = "Scores"
+//        scoreNode.fontColor = SKColor.purple
+//        scoreNode.position = CGPoint(x: self.frame.midX, y: self.frame.midY - 187.5)
+//        scoreNode.zPosition = 20
+//        self.addChild(scoreNode)
         
-        var scoreNode = SKLabelNode()
-        scoreNode.fontName = "Helvetica"
-        scoreNode.text = "Scores"
-        scoreNode.fontColor = SKColor.purpleColor()
-        scoreNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 237.5)
-        scoreNode.zPosition = 20
-        self.addChild(scoreNode)
-        
-        var scoreBox = SKShapeNode(rectOfSize: CGSizeMake(200, 50), cornerRadius: 5)
-        scoreBox.strokeColor = SKColor.purpleColor()
-        scoreBox.position = scoreNode.position
-        scoreBox.position = CGPointMake(scoreBox.position.x, scoreBox.position.y + 10)
-        self.addChild(scoreBox)
-        scoreBox.name = "scoreBox"
+//        let scoreBox = SKShapeNode(rectOf: CGSize(width: 200, height: 50), cornerRadius: 5)
+//     // TODO: DELETE:    scoreBox.strokeColor = SKColor.purple
+//        scoreBox.position = scoreNode.position
+//        scoreBox.position = CGPoint(x: scoreBox.position.x, y: scoreBox.position.y + 10)
+//        self.addChild(scoreBox)
+//        scoreBox.name = "scoreBox"
         
         self.addChild(optionsNode)
 //        self.addChild(achievementNode)
@@ -406,31 +406,31 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
 
     /**
     *  Shows the Game Center Leaderboards
-    *
+  // TODO: DELETE:   *
     *  @return Void
     */
-    func showLeaderboard() {
+//    func showLeaderboard() {
+//
+//        let controller = GKGameCenterViewController()
+//        controller.gameCenterDelegate = self;
+//        controller.viewState = .leaderboards
+//        self.view?.window?.rootViewController?.present(controller, animated: true, completion: nil)
+//
+//    }
 
-        let controller = GKGameCenterViewController()
-        controller.gameCenterDelegate = self;
-        controller.viewState = .Leaderboards
-        self.view?.window?.rootViewController?.presentViewController(controller, animated: true, completion: nil)
-
-    }
-
-    /**
-    *  Shows the Game Center Achievments
-    *
-    *  @return Void
-    */
-    func showAchievements() {
-
-        let controller = GKGameCenterViewController()
-        controller.gameCenterDelegate = self
-        controller.viewState  = .Achievements
-        self.view?.window?.rootViewController?.presentViewController(controller, animated: true, completion: nil)
-
-    }
+//  // TODO: DELETE:   /**
+//    *  Shows the Game Center Achievments
+//    *
+//    *  @return Void
+//    */
+//    func showAchievements() {
+//
+//        let controller = GKGameCenterViewController()
+//        controller.gameCenterDelegate = self
+//        controller.viewState  = .achievements
+//        self.view?.window?.rootViewController?.present(controller, animated: true, completion: nil)
+//
+//    }
 
     /**
     *  Creates the falling rocks in the scene: creates a repeating action to make rocks
@@ -440,12 +440,12 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
     func addRocks() {
         
             let duration = 0.10
-            let makeRocks = SKAction.runBlock({self.addRock()})
-            let delay = SKAction.waitForDuration(duration)
+            let makeRocks = SKAction.run({self.addRock()})
+            let delay = SKAction.wait(forDuration: duration)
             let sequence = SKAction.sequence([makeRocks, delay])
-            let repeat = SKAction.repeatActionForever(sequence)
+            let repeatStep = SKAction.repeatForever(sequence)
 
-            self.runAction(repeat)
+            self.run(repeatStep)
         
     }
 
@@ -475,20 +475,20 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate, GKGameCenterControllerDel
 //        }
 //    }
 
-    func whatMenuItemTypeIsAtPoint(point: CGPoint) -> menuItemType {
+    func whatMenuItemTypeIsAtPoint(_ point: CGPoint) -> menuItemType {
         
-        if self.childNodeWithName("playBox")!.containsPoint(point) {
+        if self.childNode(withName: "playBox")!.contains(point) {
             return .kMenuItemTypePlay
         }
-        else if self.childNodeWithName("customizeBox")!.containsPoint(point) {
+        else if self.childNode(withName: "customizeBox")!.contains(point) {
             return .kMenuItemTypeCustomize
         }
-        else if self.childNodeWithName("optionsBox")!.containsPoint(point) {
+        else if self.childNode(withName: "optionsBox")!.contains(point) {
             return .kMenuItemTypeOptions
         }
-        else if self.childNodeWithName("scoreBox")!.containsPoint(point) {
-            return .kMenuItemTypeScores
-        }
+        // TODO: DELETE: else if self.childNode(withName: "scoreBox")!.contains(point) {
+        // TODO: DELETE:     return .kMenuItemTypeScores
+       // TODO: DELETE:  }
         else {
             return .kMenuItemTypeInvalid
         }

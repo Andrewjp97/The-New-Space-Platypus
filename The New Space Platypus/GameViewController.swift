@@ -5,16 +5,16 @@
 //  Created by Andrew Paterson on 6/4/14.
 //  Copyright (c) 2014 Andrew Paterson. All rights reserved.
 //
-import iAd
+// TODO: DELETE: import iAd
 import UIKit
 import SpriteKit
 import GameKit
 import AVFoundation
 
-class GameViewController: UIViewController, ADBannerViewDelegate, EasyGameCenterDelegate {
+class GameViewController: UIViewController {
 
-    var iAdBanner = ADBannerView()
-    var bannerVisible = false
+    // TODO: DELETE: var iAdBanner = ADBannerView()
+    // TODO: DELETE: var bannerVisible = false
     var player = AVAudioPlayer()
     
     override func viewDidLoad() {
@@ -22,56 +22,56 @@ class GameViewController: UIViewController, ADBannerViewDelegate, EasyGameCenter
         
     }
 
-    func easyGameCenterAuthentified() {
+// TODO: DELETE: func easyGameCenterAuthentified() {
         //println("Authenticated")
-    }
+    // TODO: DELETE: }
     
-    func easyGameCenterNotAuthentified() {
+    // TODO: DELETE: func easyGameCenterNotAuthentified() {
         //println("Not Authenticated")
-    }
+    // TODO: DELETE: }
     
-    func bannerViewDidLoadAd(banner: ADBannerView!) {
-        if(bannerVisible == false) {
+    // TODO: DELETE: func bannerViewDidLoadAd(_ banner: ADBannerView!) {
+       // TODO: DELETE:  if(bannerVisible == false) {
             
             // Add banner Ad to the view
-            if(iAdBanner.superview == nil) {
-                self.view?.addSubview(iAdBanner)
-            }
+         // TODO: DELETE:    if(iAdBanner.superview == nil) {
+          // TODO: DELETE:       self.view?.addSubview(iAdBanner)
+          // TODO: DELETE:   }
             
-            // Move banner into visible screen frame:
-            UIView.beginAnimations("iAdBannerShow", context: nil)
-            banner.frame = CGRectOffset(banner.frame, 0, -banner.frame.size.height)
-            UIView.commitAnimations()
+          // TODO: DELETE:   // Move banner into visible screen frame:
+         // TODO: DELETE:    UIView.beginAnimations("iAdBannerShow", context: nil)
+         // TODO: DELETE:    banner.frame = banner.frame.offsetBy(dx: 0, dy: -banner.frame.size.height)
+         // TODO: DELETE:    UIView.commitAnimations()
             
-            bannerVisible = true
-        }
+        // TODO: DELETE:     bannerVisible = true
+       // TODO: DELETE:  }
         
-    }
+   // TODO: DELETE:  }
     
     // Hide banner, if Ad is not loaded.
-    func bannerView(banner: ADBannerView!, didFailToReceiveAdWithError error: NSError!) {
-        if(bannerVisible == true) {
+   // TODO: DELETE:  func bannerView(_ banner: ADBannerView!, didFailToReceiveAdWithError error: Error!) {
+    // TODO: DELETE:     if(bannerVisible == true) {
             // Move banner below screen frame:
-            UIView.beginAnimations("iAdBannerHide", context: nil)
-            banner.frame = CGRectOffset(banner.frame, 0, banner.frame.size.height)
-            UIView.commitAnimations()
-            bannerVisible = false
-        }
-        
-    }
+    // TODO: DELETE:         UIView.beginAnimations("iAdBannerHide", context: nil)
+   // TODO: DELETE:          banner.frame = banner.frame.offsetBy(dx: 0, dy: banner.frame.size.height)
+   // TODO: DELETE:          UIView.commitAnimations()
+   // TODO: DELETE:          bannerVisible = false
+   // TODO: DELETE:      }
+   // TODO: DELETE:
+   // TODO: DELETE:  }
     
-    func bannerViewActionDidFinish(banner: ADBannerView!) {
-        let view = self.view as! SKView
-        view.presentScene(WelcomeScene(size: self.view.frame.size))
-        if let height = self.view?.frame.size.height {
-            if let width = self.view?.frame.size.width {
-                banner.frame = CGRectMake(0, height, width, 50)
-                banner.frame = CGRectOffset(banner.frame, 0, banner.frame.size.height)
-            }
-        }
-    }
+  // TODO: DELETE:   func bannerViewActionDidFinish(_ banner: ADBannerView!) {
+   // TODO: DELETE:      let view = self.view as! SKView
+   // TODO: DELETE:      view.presentScene(WelcomeScene(size: self.view.frame.size))
+   // TODO: DELETE:      if let height = self.view?.frame.size.height {
+   // TODO: DELETE:          if let width = self.view?.frame.size.width {
+   // TODO: DELETE:              banner.frame = CGRect(x: 0, y: height, width: width, height: 50)
+   // TODO: DELETE:              banner.frame = banner.frame.offsetBy(dx: 0, dy: banner.frame.size.height)
+   // TODO: DELETE:          }
+   // TODO: DELETE:      }
+   // TODO: DELETE:  }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
 
         
         
@@ -84,24 +84,24 @@ class GameViewController: UIViewController, ADBannerViewDelegate, EasyGameCenter
         skView.ignoresSiblingOrder = true
 
         /* Set the scale mode to scale to fit the window */
-        scene.scaleMode = .AspectFill
+        scene.scaleMode = .aspectFill
 
         skView.presentScene(scene)
         
-        if let height = self.view?.frame.size.height {
-            if let width = self.view?.frame.size.width {
-                iAdBanner.frame = CGRectMake(0, height, width, 50)
-                iAdBanner.delegate = self
-                bannerVisible = false
-            }
-        }
+   // TODO: DELETE:     if let height = self.view?.frame.size.height {
+   // TODO: DELETE:          if let width = self.view?.frame.size.width {
+   // TODO: DELETE:              iAdBanner.frame = CGRect(x: 0, y: height, width: width, height: 50)
+    // TODO: DELETE:             iAdBanner.delegate = self
+    // TODO: DELETE:             bannerVisible = false
+      // TODO: DELETE:       }
+      // TODO: DELETE:   }
 
-        EasyGameCenter.sharedInstance(self)
+     // TODO: DELETE:    EasyGameCenter.sharedInstance(self)
         
-        EasyGameCenter.showGameCenterAuthentication()
+     // TODO: DELETE:    EasyGameCenter.showGameCenterAuthentication()
         
-        var err: NSError?
-        player = AVAudioPlayer(contentsOfURL: NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("Adventure Meme", ofType: "mp3")!), error: &err)
+
+        try? player = AVAudioPlayer(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "Adventure Meme", ofType: "mp3")!))
         
         player.prepareToPlay()
         
@@ -110,13 +110,15 @@ class GameViewController: UIViewController, ADBannerViewDelegate, EasyGameCenter
         player.play()
     }
 
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
         return false
     }
-
-    override func supportedInterfaceOrientations() -> Int {
-        return UIInterfaceOrientation.Portrait.rawValue
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.portrait
     }
+    
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

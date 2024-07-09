@@ -9,7 +9,7 @@
 import UIKit
 import SpriteKit
 import GameKit
-import Crashlytics
+//import Crashlytics
 
 
 /**
@@ -65,7 +65,7 @@ enum kPlatypusColor: Int {
 *
 *  @return The image name for the given platypus type
 */
-func imageNameForPlatypusColor(color: kPlatypusColor) -> String {
+func imageNameForPlatypusColor(_ color: kPlatypusColor) -> String {
     switch color {
     case .kPlatypusColorDefault:
         return "hullImage"
@@ -102,7 +102,7 @@ func imageNameForPlatypusColor(color: kPlatypusColor) -> String {
 *
 *  @return The Value for NSUser Defaults for the given platypus type
 */
-func stringForPlatypusType(type: kPlatypusColor) -> String {
+func stringForPlatypusType(_ type: kPlatypusColor) -> String {
     switch type {
     case .kPlatypusColorDefault:
         return "default"
@@ -135,8 +135,8 @@ func stringForPlatypusType(type: kPlatypusColor) -> String {
 *  The Global Platypus Color: Auto updates NSUserDefaults upon setting
 */
 var platypusColor: kPlatypusColor = .kPlatypusColorDefault{
-willSet{
-    NSUserDefaults.standardUserDefaults().setObject(stringForPlatypusType(newValue), forKey: "platypusColor")
+didSet{
+    UserDefaults.standard.set(stringForPlatypusType(platypusColor), forKey: "platypusColor")
 }
 }
 
@@ -144,15 +144,34 @@ willSet{
 *  The Global Determination of wheter or not motion control is enabled: Auto updates NSUserDefaults upon setting
 */
 var motionEnabled: Bool = false {
-willSet {
-    NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: "motion")
+didSet {
+    UserDefaults.standard.set(motionEnabled, forKey: "motion")
 }
 }
 
+var recordHighScore: Int = 0 {
+didSet {
+    UserDefaults.standard.set(recordHighScore, forKey: "recordHighScore")
+}
+}
 
+var numberOfGamesPlayed: Int = 0 {
+didSet {
+    UserDefaults.standard.set(numberOfGamesPlayed, forKey: "numberOfGamesPlayed")
+}
+}
 
+var averageScore: Double = 0.0 {
+didSet {
+    UserDefaults.standard.set(averageScore, forKey: "averageScore")
+}
+}
+var timeSpentPlaying: Int = 0 {
+didSet {
+    UserDefaults.standard.set(timeSpentPlaying, forKey: "timeSpentPlaying")
+}
+}
 
-//import Crashlytics
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -162,13 +181,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Get Stored Values from NSUserDefaults
         
-        motionEnabled = NSUserDefaults.standardUserDefaults().boolForKey("motion")
+        motionEnabled = UserDefaults.standard.bool(forKey: "motion")
         //gameCenterEnabled = NSUserDefaults.standardUserDefaults().boolForKey("gk")
         // if NSUserDefaults.standardUserDefaults().objectForKey("test") as String != "yes" {
         // gameCenterEnabled = true
         //    NSUserDefaults.standardUserDefaults().setObject("yes", forKey: "test")
         // }
-        if let colorString:NSString = NSUserDefaults.standardUserDefaults().objectForKey("platypusColor") as? NSString {
+        
+        recordHighScore = UserDefaults.standard.integer(forKey: "recordHighScore")
+        
+        numberOfGamesPlayed = UserDefaults.standard.integer(forKey: "numberOfGamesPlayed")
+        
+        averageScore = UserDefaults.standard.double(forKey: "averageScore")
+        
+        timeSpentPlaying = UserDefaults.standard.integer(forKey: "timeSpentPlaying")
+        
+        if let colorString:NSString = UserDefaults.standard.object(forKey: "platypusColor") as? NSString {
             switch colorString {
             case "red":
                 platypusColor = .kPlatypusColorRed
@@ -203,31 +231,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         super.init()
     }
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
-        Crashlytics.startWithAPIKey("1c6d125161cfd6155af441bc83d21a64632d815c")
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         return true
     }
     
     
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     }
     
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
     }
     
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     }
     
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
     
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     

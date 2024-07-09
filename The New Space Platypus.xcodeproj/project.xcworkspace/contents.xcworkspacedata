@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Servo Movement 02.mp3">
-   </FileRef>
-   <FileRef
       location = "self:The New Space Platypus.xcodeproj">
    </FileRef>
 </Workspace>

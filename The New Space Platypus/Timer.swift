@@ -22,7 +22,7 @@ protocol TimerDelegate {
     *
     *  @return Void
     */
-    func timerDidChangeTime(value: Int, valueString: String)
+    func timerDidChangeTime(_ value: Int, valueString: String)
 }
 class Timer: SKNode {
     /**
@@ -57,10 +57,10 @@ class Timer: SKNode {
     */
     func start() {
         self.shouldContinue = true
-        let performBlock = SKAction.runBlock({self.addTime()})
-        let delay = SKAction.waitForDuration(1.0 * self.timeScale)
+        let performBlock = SKAction.run({self.addTime()})
+        let delay = SKAction.wait(forDuration: 1.0 * self.timeScale)
         let action = SKAction.sequence([delay, performBlock])
-        self.runAction(action)
+        self.run(action)
     }
     
     /**
@@ -69,15 +69,15 @@ class Timer: SKNode {
     *  @return Void
     */
     func addTime() {
-        self.timeElapsed++
+        self.timeElapsed += 1
         if let del = self.delegate {
             del.timerDidChangeTime(self.timeElapsed, valueString: self.timeElapsedString)
         }
         if self.shouldContinue {
-            let performBlock = SKAction.runBlock({self.addTime()})
-            let delay = SKAction.waitForDuration(1.0 * self.timeScale)
+            let performBlock = SKAction.run({self.addTime()})
+            let delay = SKAction.wait(forDuration: 1.0 * self.timeScale)
             let action = SKAction.sequence([delay, performBlock])
-            self.runAction(action)
+            self.run(action)
         }
     }
 

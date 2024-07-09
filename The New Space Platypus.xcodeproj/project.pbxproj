@@ -13,14 +13,12 @@
 		AE1FADD41AEEC66800C1783F /* The_New_Space_PlatypusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1FADD31AEEC66800C1783F /* The_New_Space_PlatypusTests.swift */; };
 		AE67D9B81AF6DB3B0025AF9E /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9B71AF6DB3B0025AF9E /* Settings.bundle */; };
 		AE67D9BB1AF6DFD30025AF9E /* bgmusic.license in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9B91AF6DFD30025AF9E /* bgmusic.license */; };
-		AE67D9BC1AF6DFD30025AF9E /* script.pl in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9BA1AF6DFD30025AF9E /* script.pl */; };
 		AE67D9BE1AF6E0990025AF9E /* Adventure Meme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9BD1AF6E0990025AF9E /* Adventure Meme.mp3 */; };
-		AE67D9C31AF6F6DA0025AF9E /* Clank.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9BF1AF6F6DA0025AF9E /* Clank.mp3 */; };
 		AE67D9C41AF6F6DA0025AF9E /* Grenade.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9C01AF6F6DA0025AF9E /* Grenade.mp3 */; };
 		AE67D9C51AF6F6DA0025AF9E /* scifi011.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9C11AF6F6DA0025AF9E /* scifi011.mp3 */; };
 		AE67D9C81AF6F87A0025AF9E /* Servo Movement 02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9C71AF6F87A0025AF9E /* Servo Movement 02.mp3 */; };
-		AEA28C721AEEF20E00E40BB6 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEA28C711AEEF20E00E40BB6 /* Crashlytics.framework */; };
-		AED150D81AEEC7C300D1C1A0 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AED150D71AEEC7C300D1C1A0 /* GameKit.framework */; };
+		AEAE7A0D1B0114F8007DE645 /* Clank.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AEAE7A0C1B0114F8007DE645 /* Clank.mp3 */; };
+		AEC55D3A1EEB74D200BAC0F7 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC55D391EEB74D200BAC0F7 /* GameKit.framework */; };
 		AED150DA1AEEC95D00D1C1A0 /* CustomizeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED150D91AEEC95D00D1C1A0 /* CustomizeScene.swift */; };
 		AED150DC1AEEC97100D1C1A0 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED150DB1AEEC97100D1C1A0 /* GameScene.swift */; };
 		AED150DE1AEEC9B700D1C1A0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED150DD1AEEC9B700D1C1A0 /* GameViewController.swift */; };
@@ -37,7 +35,6 @@
 		AED150F61AEECA4900D1C1A0 /* spark.sks in Resources */ = {isa = PBXBuildFile; fileRef = AED150F21AEECA4900D1C1A0 /* spark.sks */; };
 		AED150F71AEECA4900D1C1A0 /* Stars.sks in Resources */ = {isa = PBXBuildFile; fileRef = AED150F31AEECA4900D1C1A0 /* Stars.sks */; };
 		AED150F81AEECA4900D1C1A0 /* tail.sks in Resources */ = {isa = PBXBuildFile; fileRef = AED150F41AEECA4900D1C1A0 /* tail.sks */; };
-		AED3F18E1AF6BC5D00E9E9A1 /* EasyGameCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED3F18D1AF6BC5D00E9E9A1 /* EasyGameCenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,12 +60,11 @@
 		AE67D9B91AF6DFD30025AF9E /* bgmusic.license */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = bgmusic.license; sourceTree = "<group>"; };
 		AE67D9BA1AF6DFD30025AF9E /* script.pl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.perl; path = script.pl; sourceTree = "<group>"; };
 		AE67D9BD1AF6E0990025AF9E /* Adventure Meme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Adventure Meme.mp3"; sourceTree = "<group>"; };
-		AE67D9BF1AF6F6DA0025AF9E /* Clank.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Clank.mp3; sourceTree = "<group>"; };
 		AE67D9C01AF6F6DA0025AF9E /* Grenade.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Grenade.mp3; sourceTree = "<group>"; };
 		AE67D9C11AF6F6DA0025AF9E /* scifi011.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scifi011.mp3; sourceTree = "<group>"; };
 		AE67D9C71AF6F87A0025AF9E /* Servo Movement 02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Servo Movement 02.mp3"; sourceTree = "<group>"; };
-		AEA28C711AEEF20E00E40BB6 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
-		AED150D71AEEC7C300D1C1A0 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
+		AEAE7A0C1B0114F8007DE645 /* Clank.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Clank.mp3; path = ../Clank.mp3; sourceTree = "<group>"; };
+		AEC55D391EEB74D200BAC0F7 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		AED150D91AEEC95D00D1C1A0 /* CustomizeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizeScene.swift; sourceTree = "<group>"; };
 		AED150DB1AEEC97100D1C1A0 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		AED150DD1AEEC9B700D1C1A0 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -85,7 +81,6 @@
 		AED150F21AEECA4900D1C1A0 /* spark.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = spark.sks; sourceTree = "<group>"; };
 		AED150F31AEECA4900D1C1A0 /* Stars.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Stars.sks; sourceTree = "<group>"; };
 		AED150F41AEECA4900D1C1A0 /* tail.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = tail.sks; sourceTree = "<group>"; };
-		AED3F18D1AF6BC5D00E9E9A1 /* EasyGameCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EasyGameCenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,8 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEA28C721AEEF20E00E40BB6 /* Crashlytics.framework in Frameworks */,
-				AED150D81AEEC7C300D1C1A0 /* GameKit.framework in Frameworks */,
+				AEC55D3A1EEB74D200BAC0F7 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,11 +105,10 @@
 		AE1FADAB1AEEC66700C1783F = {
 			isa = PBXGroup;
 			children = (
-				AED150D71AEEC7C300D1C1A0 /* GameKit.framework */,
 				AE1FADB61AEEC66800C1783F /* The New Space Platypus */,
 				AE1FADD01AEEC66800C1783F /* The New Space PlatypusTests */,
 				AE1FADB51AEEC66800C1783F /* Products */,
-				AEA28C711AEEF20E00E40BB6 /* Crashlytics.framework */,
+				AEC55D381EEB74D200BAC0F7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,13 +124,12 @@
 		AE1FADB61AEEC66800C1783F /* The New Space Platypus */ = {
 			isa = PBXGroup;
 			children = (
+				AEAE7A0C1B0114F8007DE645 /* Clank.mp3 */,
 				AE67D9B21AF6DA7F0025AF9E /* licenses */,
 				AE67D9C71AF6F87A0025AF9E /* Servo Movement 02.mp3 */,
 				AE67D9BD1AF6E0990025AF9E /* Adventure Meme.mp3 */,
 				AE1FADB91AEEC66800C1783F /* AppDelegate.swift */,
 				AED150DB1AEEC97100D1C1A0 /* GameScene.swift */,
-				AED3F18D1AF6BC5D00E9E9A1 /* EasyGameCenter.swift */,
-				AE67D9BF1AF6F6DA0025AF9E /* Clank.mp3 */,
 				AE67D9C01AF6F6DA0025AF9E /* Grenade.mp3 */,
 				AE67D9C11AF6F6DA0025AF9E /* scifi011.mp3 */,
 				AED150D91AEEC95D00D1C1A0 /* CustomizeScene.swift */,
@@ -197,6 +189,14 @@
 			name = licenses;
 			sourceTree = "<group>";
 		};
+		AEC55D381EEB74D200BAC0F7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AEC55D391EEB74D200BAC0F7 /* GameKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -242,12 +242,14 @@
 		AE1FADAC1AEEC66700C1783F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = "Andrew Paterson";
 				TargetAttributes = {
 					AE1FADB31AEEC66700C1783F = {
 						CreatedOnToolsVersion = 6.3;
 						DevelopmentTeam = 3W67YYZ9EF;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
 								enabled = 1;
@@ -256,6 +258,9 @@
 					};
 					AE1FADCC1AEEC66800C1783F = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 3W67YYZ9EF;
+						LastSwiftMigration = 0830;
+						ProvisioningStyle = Automatic;
 						TestTargetID = AE1FADB31AEEC66700C1783F;
 					};
 				};
@@ -284,13 +289,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE67D9C31AF6F6DA0025AF9E /* Clank.mp3 in Resources */,
 				AED150F71AEECA4900D1C1A0 /* Stars.sks in Resources */,
 				AE67D9C81AF6F87A0025AF9E /* Servo Movement 02.mp3 in Resources */,
 				AED150F51AEECA4900D1C1A0 /* spark.png in Resources */,
+				AEAE7A0D1B0114F8007DE645 /* Clank.mp3 in Resources */,
 				AE1FADC51AEEC66800C1783F /* Images.xcassets in Resources */,
 				AE67D9BB1AF6DFD30025AF9E /* bgmusic.license in Resources */,
-				AE67D9BC1AF6DFD30025AF9E /* script.pl in Resources */,
 				AED150E81AEECA2200D1C1A0 /* bodyOnFire.sks in Resources */,
 				AE67D9B81AF6DB3B0025AF9E /* Settings.bundle in Resources */,
 				AED150F81AEECA4900D1C1A0 /* tail.sks in Resources */,
@@ -327,7 +331,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run 1c6d125161cfd6155af441bc83d21a64632d815c 0bd63c3e7bccadb5a03117ce104a04e0040a7858af6c8bc5824aed3b65726fbd\n# xcode-build-bump.sh\n# @desc Auto-increment the build number every time the project is run.\n# @usage\n# 1. Select: your Target in Xcode\n# 2. Select: Build Phases Tab\n# 3. Select: Add Build Phase -> Add Run Script\n# 4. Paste code below in to new \"Run Script\" section\n# 5. Drag the \"Run Script\" below \"Link Binaries With Libraries\"\n# 6. Insure that your starting build number is set to a whole integer and not a float (e.g. 1, not 1.0)\n\n#\n# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\ngit=`sh /etc/profile; which git`\nappBuild=`\"$git\" rev-list --all |wc -l`\nif [ $CONFIGURATION = \"Debug\" ]; then\nbranchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
+			shellScript = "#./Crashlytics.framework/run 1c6d125161cfd6155af441bc83d21a64632d815c 0bd63c3e7bccadb5a03117ce104a04e0040a7858af6c8bc5824aed3b65726fbd\n# xcode-build-bump.sh\n# @desc Auto-increment the build number every time the project is run.\n# @usage\n# 1. Select: your Target in Xcode\n# 2. Select: Build Phases Tab\n# 3. Select: Add Build Phase -> Add Run Script\n# 4. Paste code below in to new \"Run Script\" section\n# 5. Drag the \"Run Script\" below \"Link Binaries With Libraries\"\n# 6. Insure that your starting build number is set to a whole integer and not a float (e.g. 1, not 1.0)\n\n#\n# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\ngit=`sh /etc/profile; which git`\nappBuild=`\"$git\" rev-list --all |wc -l`\nif [ $CONFIGURATION = \"Debug\" ]; then\nbranchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -344,7 +348,6 @@
 				AE1FADBA1AEEC66800C1783F /* AppDelegate.swift in Sources */,
 				AED150E21AEEC9C800D1C1A0 /* PlatypusNode.swift in Sources */,
 				AED150E61AEEC9D900D1C1A0 /* WelcomeScene.swift in Sources */,
-				AED3F18E1AF6BC5D00E9E9A1 /* EasyGameCenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,14 +394,17 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -436,11 +442,14 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Andrew Paterson (3W67YYZ9EF)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -457,6 +466,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -467,8 +477,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3W67YYZ9EF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -476,8 +488,11 @@
 				INFOPLIST_FILE = "The New Space Platypus/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewPaterson.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -486,8 +501,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3W67YYZ9EF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -495,8 +512,11 @@
 				INFOPLIST_FILE = "The New Space Platypus/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewPaterson.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -504,6 +524,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3W67YYZ9EF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -514,7 +536,10 @@
 				);
 				INFOPLIST_FILE = "The New Space PlatypusTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewPaterson.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/The New Space Platypus.app/The New Space Platypus";
 			};
 			name = Debug;
@@ -523,13 +548,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 3W67YYZ9EF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "The New Space PlatypusTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewPaterson.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/The New Space Platypus.app/The New Space Platypus";
 			};
 			name = Release;

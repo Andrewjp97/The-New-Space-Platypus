@@ -25,15 +25,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
             hits = 0
         }
         if hits == 0 {
-            let node = self.childNodeWithName("lifeBar") as! SKSpriteNode
+            let node = self.childNode(withName: "lifeBar") as! SKSpriteNode
             node.texture = SKTexture(imageNamed: "LifeBarFull")
         }
         if hits == 1 {
-            let node = self.childNodeWithName("lifeBar") as! SKSpriteNode
+            let node = self.childNode(withName: "lifeBar") as! SKSpriteNode
             node.texture = SKTexture(imageNamed: "LifeBarTwo")
         }
         if hits == 2 {
-            let node = self.childNodeWithName("lifeBar") as! SKSpriteNode
+            let node = self.childNode(withName: "lifeBar") as! SKSpriteNode
             node.texture = SKTexture(imageNamed: "LifeBarOne")
         }
         if hits > 2 {
@@ -46,7 +46,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
     var shouldAcceptFurtherCollisions = true
     var shouldMakeMoreRocks = true
     var level = 0
-    var achievementsDictionary = [:]
+    // TODO: DELETE: var achievementsDictionary = [:]
     var motionManager: CMMotionManager?
     var impulseSlower = false
     var timer: Timer = Timer()
@@ -71,32 +71,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
         self.timer.removeAllActions()
         self.timer.timeScale = 1.0
         self.timer.start()
-        let action = SKAction.runBlock({
-            self.enumerateChildNodesWithName("slow", usingBlock: ({(node, stop) in
+        let action = SKAction.run({
+            self.enumerateChildNodes(withName: "slow", using: ({(node, stop) in
             node.alpha = node.alpha - 0.4
             }))
             })
         
-        let repeat = SKAction.repeatAction(SKAction.sequence([action, SKAction.waitForDuration(0.025)]), count: 10)
-        self.runAction(repeat)
-        let block: (SKNode!, UnsafeMutablePointer<ObjCBool>) -> Void = ({(node, stop) in
+        let repeatStep = SKAction.repeat(SKAction.sequence([action, SKAction.wait(forDuration: 0.025)]), count: 10)
+        self.run(repeatStep)
+        let block: (SKNode?, UnsafeMutablePointer<ObjCBool>) -> Void = ({(node, stop) in
             
             if let node = node as? SKSpriteNode {
                 let origional = node.physicsBody
                 node.physicsBody = nil
-                node.physicsBody = SKPhysicsBody(rectangleOfSize: node.size)
+                node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
                 node.physicsBody?.categoryBitMask = origional!.categoryBitMask
                 node.physicsBody?.categoryBitMask = origional!.categoryBitMask
                 node.physicsBody?.contactTestBitMask = origional!.contactTestBitMask
-                node.physicsBody?.applyImpulse(CGVectorMake(0, -0.75 * (self.impulseSlower ? 0.5 : 1.0) * (1.0 + (self.seconds.CGFloatValue / 100.0))))
+                node.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -0.75 * (self.impulseSlower ? 0.5 : 1.0) * (1.0 + (self.seconds.CGFloatValue / 100.0))))
             }
             
             })
-        self.enumerateChildNodesWithName("rock", usingBlock: block)
-        self.enumerateChildNodesWithName("life", usingBlock: block)
-        self.enumerateChildNodesWithName("gravity", usingBlock: block)
-        self.enumerateChildNodesWithName("invincible", usingBlock: block)
-        self.physicsWorld.gravity = CGVectorMake(0, self.physicsWorld.gravity.dy * 20)
+        self.enumerateChildNodes(withName: "rock", using: block)
+        self.enumerateChildNodes(withName: "life", using: block)
+        self.enumerateChildNodes(withName: "gravity", using: block)
+        self.enumerateChildNodes(withName: "invincible", using: block)
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: self.physicsWorld.gravity.dy * 20)
         
         
 
@@ -113,33 +113,33 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
         let node = SKSpriteNode(color: SKColor(white: 0.1, alpha: 0.6), size: self.size)
         node.alpha = 0.0
         node.name = "slow"
-        node.anchorPoint = CGPointZero
+        node.anchorPoint = CGPoint.zero
         node.zPosition = 1000
-        let action = SKAction.runBlock({
-            let node = self.childNodeWithName("slow") as! SKSpriteNode
+        let action = SKAction.run({
+            let node = self.childNode(withName: "slow") as! SKSpriteNode
             node.alpha = node.alpha + 0.2
             })
-        let repeat = SKAction.repeatAction(SKAction.sequence([action, SKAction.waitForDuration(0.05)]), count: 20)
+        let repeatStep = SKAction.repeat(SKAction.sequence([action, SKAction.wait(forDuration: 0.05)]), count: 20)
         self.addChild(node)
-        node.runAction(repeat)
-        let block: (SKNode!, UnsafeMutablePointer<ObjCBool>) -> Void = ({(node, stop) in
+        node.run(repeatStep)
+        let block: (SKNode?, UnsafeMutablePointer<ObjCBool>) -> Void = ({(node, stop) in
             if let node = node as? SKSpriteNode {
             let origional = node.physicsBody
                 node.physicsBody = nil
-                node.physicsBody = SKPhysicsBody(rectangleOfSize: node.size)
+                node.physicsBody = SKPhysicsBody(rectangleOf: node.size)
                 node.physicsBody?.categoryBitMask = origional!.categoryBitMask
                 node.physicsBody?.collisionBitMask = origional!.collisionBitMask
                 node.physicsBody?.contactTestBitMask = origional!.contactTestBitMask
-                node.physicsBody?.applyImpulse(CGVectorMake(0, -0.125 * (self.impulseSlower ? 0.5 : 1.0) * (1.0 + (self.seconds.CGFloatValue / 100.0))))
+                node.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -0.125 * (self.impulseSlower ? 0.5 : 1.0) * (1.0 + (self.seconds.CGFloatValue / 100.0))))
             }
             
             
             })
-        self.enumerateChildNodesWithName("rock", usingBlock: block)
-        self.enumerateChildNodesWithName("life", usingBlock: block)
-        self.enumerateChildNodesWithName("gravity", usingBlock: block)
-        self.enumerateChildNodesWithName("invincible", usingBlock: block)
-        self.physicsWorld.gravity = CGVectorMake(0, self.physicsWorld.gravity.dy * 0.05)
+        self.enumerateChildNodes(withName: "rock", using: block)
+        self.enumerateChildNodes(withName: "life", using: block)
+        self.enumerateChildNodes(withName: "gravity", using: block)
+        self.enumerateChildNodes(withName: "invincible", using: block)
+        self.physicsWorld.gravity = CGVector(dx: 0, dy: self.physicsWorld.gravity.dy * 0.05)
         
     }
 
@@ -162,25 +162,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
         
     }
 
-    func timerDidChangeTime(value: Int, valueString: String) {
+    func timerDidChangeTime(_ value: Int, valueString: String) {
         self.seconds = value
         let string = value % 60 < 10 ? "0\(value % 60)" : "\(value % 60)"
         self.timerLabel.text = "\(value / 60):\(string)"
-        self.timerLabel.position = CGPointMake(10 + (0.5 * self.timerLabel.frame.size.width), self.frame.size.height - 20 - (0.5 * self.timerLabel.frame.size.height))
+        self.timerLabel.position = CGPoint(x: 10 + (0.5 * self.timerLabel.frame.size.width), y: self.frame.size.height - 20 - (0.5 * self.timerLabel.frame.size.height))
         
     }
 
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
 
         if !contentCreated {
 
             self.timer.delegate = self
             self.addChild(self.timer)
             self.timerLabel.zPosition = 500
-            self.backgroundColor = SKColor.blackColor()
+            self.backgroundColor = SKColor.black
             self.timerLabel.fontSize = 24
-            self.timerLabel.fontColor = SKColor.whiteColor()
-            self.timerLabel.position = CGPointMake(10 + (0.5 * self.timerLabel.frame.size.width), self.frame.size.height - 20 - (0.5 * self.timerLabel.frame.size.height))
+            self.timerLabel.fontColor = SKColor.white
+            self.timerLabel.position = CGPoint(x: 10 + (0.5 * self.timerLabel.frame.size.width), y: self.frame.size.height - 20 - (0.5 * self.timerLabel.frame.size.height))
             self.addChild(self.timerLabel)
 
 
@@ -193,7 +193,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
 
             self.physicsWorld.contactDelegate = self
             // Minimum gravity needed to allow rocks that are collided with to continue off screen
-            self.physicsWorld.gravity = CGVectorMake(0, -1.5)
+            self.physicsWorld.gravity = CGVector(dx: 0, dy: -1.5)
 
             
 
@@ -207,10 +207,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
     *
     *  @return Void
     */
-    func processUserMotionForUpdate(currentTimeInterval: NSTimeInterval) {
+    func processUserMotionForUpdate(_ currentTimeInterval: TimeInterval) {
         
         if self.shouldAcceptFurtherCollisions {
-            let ship = self.childNodeWithName("PlatypusBody")
+            let ship = self.childNode(withName: "PlatypusBody")
             let data = self.motionManager?.accelerometerData
 
             if let datas = data {
@@ -219,8 +219,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
                 let positionX: Double = Double(ship!.position.x)
                 let accelerometerX: Double = datas.acceleration.x as Double * 15.0
                 let accelerometerY: Double = datas.acceleration.y as Double * 15.0
-                let height: Double = Double(CGRectGetMaxY(self.frame))
-                let width: Double = Double(CGRectGetMaxX(self.frame))
+                let height: Double = Double(self.frame.maxY)
+                let width: Double = Double(self.frame.maxX)
                 
                 let horizontalNotNegative: Bool = positionX + accelerometerX >= 0.0
                 let horizontalNotPastScreen: Bool = positionX + accelerometerX <= width
@@ -235,7 +235,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
                     let newX = positionX + accelerometerX
                     let newY = positionY + accelerometerY
 
-                    let newPostion = CGPointMake(newX.CGFloatValue, newY.CGFloatValue)
+                    let newPostion = CGPoint(x: newX.CGFloatValue, y: newY.CGFloatValue)
 
                     ship?.position = newPostion
 
@@ -252,19 +252,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
     func createSceneContent() {
 
         let platypus = PlatypusNode(type: platypusColor)
-        platypus.position = CGPointMake(self.frame.size.width / 2, 100)
+        platypus.position = CGPoint(x: self.frame.size.width / 2, y: 100)
         self.addChild(platypus)
         
         self.addRocks()
         self.timer.start()
-        let makeRocks = SKAction.runBlock({self.addPowerup()})
-        let delay = SKAction.waitForDuration(10.0, withRange: 5.0)
+        let makeRocks = SKAction.run({self.addPowerup()})
+        let delay = SKAction.wait(forDuration: 10.0, withRange: 5.0)
         let sequence = SKAction.sequence([delay, makeRocks])
-        let repeat = SKAction.repeatActionForever(sequence)
+        let repeatStep = SKAction.repeatForever(sequence)
         
-        self.runAction(repeat)
+        self.run(repeatStep)
         let action = SKAction.playSoundFileNamed("scifi011.mp3", waitForCompletion: false)
-        self.runAction(action)
+        self.run(action)
         self.makeLifeBar()
         
     }
@@ -278,14 +278,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
 
         let node = SKSpriteNode(imageNamed: "LifeBarFull")
         node.name = "lifeBar"
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
+        if UIDevice.current.userInterfaceIdiom == .phone {
             //let width: CGFloat = self.view?.window?.frame.size.width!
             //let height: CGFloat = self.view?.window?.frame.size.height!
             if let view = self.view {
                 if let window = view.window {
                     let width = window.frame.width
                     let height = window.frame.height
-                    node.position = CGPointMake(width - 70, height - 15)
+                    node.position = CGPoint(x: width - 70, y: height - 15)
                 }
             }
             
@@ -295,7 +295,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
                 if let window = view.window {
                     let width = window.frame.width
                     let height = window.frame.height
-                    node.position = CGPointMake(width - 70, height - 35)
+                    node.position = CGPoint(x: width - 70, y: height - 35)
                 }
             }
             
@@ -306,17 +306,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
 
     override func didSimulatePhysics() {
 
-        let block: (SKNode!, UnsafeMutablePointer<ObjCBool>) -> Void = ({(node, stop) in
-            if node.position.x > self.frame.width + 10 || node.position.x < -10 || node.position.y < -10 {
-                node.removeFromParent()
+        let block: (SKNode?, UnsafeMutablePointer<ObjCBool>) -> Void = ({(node, stop) in
+            if (node!.position.x) > self.frame.width + 10 || node!.position.x < -10 || node!.position.y < -10 {
+                node!.removeFromParent()
             }
             })
 
-        self.enumerateChildNodesWithName("rock", usingBlock: block)
+        self.enumerateChildNodes(withName: "rock", using: block)
 
     }
 
-    override func update(currentTime: NSTimeInterval) {
+    override func update(_ currentTime: TimeInterval) {
 
         if motionEnabled {
             self.processUserMotionForUpdate(currentTime)
@@ -324,9 +324,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
 
     }
 
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
-        super.touchesBegan(touches as Set<NSObject>, withEvent: event)
+        super.touchesBegan(touches, with: event)
 
         if self.slowMotion {
             self.slowMotion = false
@@ -338,19 +338,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
 
         if self.shouldAcceptFurtherCollisions {
 
-            let hull = self.childNodeWithName("PlatypusBody")
-            let touch: UITouch = touches.first as! UITouch
-            let move = SKAction.moveTo(CGPointMake(touch.locationInNode(self).x, touch.locationInNode(self).y + 50), duration:0.05);
+            let hull = self.childNode(withName: "PlatypusBody")
+            let touch: UITouch = touches.first!
+            let move = SKAction.move(to: CGPoint(x: touch.location(in: self).x, y: touch.location(in: self).y + 50), duration:0.05);
 
-            hull?.runAction(move)
+            hull?.run(move)
 
         }
 
     }
 
-    override func touchesMoved(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
 
-        super.touchesMoved(touches as Set<NSObject>, withEvent: event)
+        super.touchesMoved(touches, with: event)
 
         if motionEnabled {
             return
@@ -358,17 +358,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
 
         if self.shouldAcceptFurtherCollisions {
 
-            let hull = self.childNodeWithName("PlatypusBody")
-            let touch: UITouch = touches.first as! UITouch
-            let move = SKAction.moveTo(CGPointMake(touch.locationInNode(self).x, touch.locationInNode(self).y + 50), duration:0.05);
+            let hull = self.childNode(withName: "PlatypusBody")
+            let touch: UITouch = touches.first!
+            let move = SKAction.move(to: CGPoint(x: touch.location(in: self).x, y: touch.location(in: self).y + 50), duration:0.05);
 
-            hull?.runAction(move)
+            hull?.run(move)
 
         }
 
     }
     
-    override func touchesEnded(touches: Set<NSObject>, withEvent event: UIEvent) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if self.shouldAcceptFurtherCollisions && !motionEnabled {
             self.slowMotion = true
         }
@@ -380,24 +380,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
     *  @return Void
     */
     func addRock() {
-        let rock = SKSpriteNode(color: SKColor(red: 0.67647, green:0.51568, blue:0.29216, alpha:1.0), size: CGSizeMake(8, 8))
+        let rock = SKSpriteNode(color: SKColor(red: 0.67647, green:0.51568, blue:0.29216, alpha:1.0), size: CGSize(width: 8, height: 8))
 
-        let width: CGFloat = CGRectGetWidth(self.frame)
+        let width: CGFloat = self.frame.width
         let widthAsDouble: Double = Double(width)
         let randomNum = randomNumberFunction(widthAsDouble)
         let randomNumAsCGFloat: CGFloat = CGFloat(randomNum)
-        let point = CGPointMake(randomNumAsCGFloat, CGRectGetHeight(self.frame))
+        let point = CGPoint(x: randomNumAsCGFloat, y: self.frame.height)
 
         rock.position = point
         rock.name = "rock"
-        rock.physicsBody = SKPhysicsBody(rectangleOfSize: rock.size)
+        rock.physicsBody = SKPhysicsBody(rectangleOf: rock.size)
         rock.physicsBody?.usesPreciseCollisionDetection = true
-        rock.physicsBody?.categoryBitMask = ColliderType.Rock.rawValue
-        rock.physicsBody?.contactTestBitMask = ColliderType.Rock.rawValue | ColliderType.Shield.rawValue
-        rock.physicsBody?.collisionBitMask = ColliderType.Rock.rawValue | ColliderType.Platypus.rawValue
+        rock.physicsBody?.categoryBitMask = ColliderType.rock.rawValue
+        rock.physicsBody?.contactTestBitMask = ColliderType.rock.rawValue | ColliderType.shield.rawValue
+        rock.physicsBody?.collisionBitMask = ColliderType.rock.rawValue | ColliderType.platypus.rawValue
 
         self.addChild(rock)
-        rock.physicsBody?.applyImpulse(CGVectorMake(0, (self.slowMotion ? -0.125 : -0.75) * (self.impulseSlower ? 0.5 : 1.0) * (1.0 + (self.seconds.CGFloatValue / 65.0))))
+        rock.physicsBody?.applyImpulse(CGVector(dx: 0, dy: (self.slowMotion ? -0.125 : -0.75) * (self.impulseSlower ? 0.5 : 1.0) * (1.0 + (self.seconds.CGFloatValue / 65.0))))
 
 
     }
@@ -409,10 +409,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
     */
     func makeStars() -> SKEmitterNode {
 
-        let path = NSBundle.mainBundle().pathForResource("Stars", ofType: "sks")
-        let stars: SKEmitterNode = NSKeyedUnarchiver.unarchiveObjectWithFile(path!) as! SKEmitterNode
-        stars.particlePosition = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMaxY(self.frame))
-        stars.particlePositionRange = CGVectorMake(CGRectGetWidth(self.frame), 0)
+        let path = Bundle.main.path(forResource: "Stars", ofType: "sks")
+        let stars: SKEmitterNode = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
+        stars.particlePosition = CGPoint(x: self.frame.midX, y: self.frame.maxY)
+        stars.particlePositionRange = CGVector(dx: self.frame.width, dy: 0)
         stars.zPosition = -2
         stars.advanceSimulationTime(10.0)
         return stars
@@ -425,22 +425,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
     *  @return Void
     */
     func addRocks() {
-        if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Phone {
+        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone {
             var duration = self.slowMotion ? 1.36 - (Double(self.seconds) / 2000): 0.16 - (Double(self.seconds) / 2000)
             duration = duration > 0.075 ? duration : 0.075
-            let makeRocks = SKAction.runBlock({self.addRock()})
-            let makeRocks2 = SKAction.runBlock({self.addRocks()})
-            let delay = SKAction.waitForDuration(duration)
+            let makeRocks = SKAction.run({self.addRock()})
+            let makeRocks2 = SKAction.run({self.addRocks()})
+            let delay = SKAction.wait(forDuration: duration)
             let sequence = SKAction.sequence([makeRocks, delay, makeRocks2])
-            self.runAction(sequence)
+            self.run(sequence)
         } else {
             let duration = self.slowMotion ? 0.96 : 0.12
-            let makeRocks = SKAction.runBlock({self.addRock()})
-            let makeRocks2 = SKAction.runBlock({self.addRocks()})
-            let delay = SKAction.waitForDuration(duration)
+            let makeRocks = SKAction.run({self.addRock()})
+            let makeRocks2 = SKAction.run({self.addRocks()})
+            let delay = SKAction.wait(forDuration: duration)
             let sequence = SKAction.sequence([makeRocks, delay, makeRocks2])
 
-            self.runAction(sequence)
+            self.run(sequence)
         }
     }
 
@@ -452,29 +452,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
     func addPowerup() {
 
         var random = arc4random()
-        let width: CGFloat = CGRectGetWidth(self.frame)
+        let width: CGFloat = self.frame.width
         let widthAsDouble: Double = Double(width)
         let randomNum: Double = randomNumberFunction(widthAsDouble) as Double
         let randomNumAsCGFloat: CGFloat = randomNum.CGFloatValue
-        let point = CGPointMake(randomNumAsCGFloat, CGRectGetHeight(self.frame) + 50)
+        let point = CGPoint(x: randomNumAsCGFloat, y: self.frame.height + 50)
         random = random % 3
         if random == 0 {
             let lifePowerup = SKSpriteNode(imageNamed: "healthPowerup")
             lifePowerup.position = point
             lifePowerup.name = "life"
-            lifePowerup.physicsBody = SKPhysicsBody(rectangleOfSize: lifePowerup.size)
+            lifePowerup.physicsBody = SKPhysicsBody(rectangleOf: lifePowerup.size)
             lifePowerup.physicsBody?.usesPreciseCollisionDetection = true
-            lifePowerup.physicsBody?.categoryBitMask = ColliderType.Life.rawValue
-            lifePowerup.physicsBody?.contactTestBitMask = ColliderType.Platypus.rawValue
-            lifePowerup.physicsBody?.collisionBitMask = ColliderType.Platypus.rawValue
+            lifePowerup.physicsBody?.categoryBitMask = ColliderType.life.rawValue
+            lifePowerup.physicsBody?.contactTestBitMask = ColliderType.platypus.rawValue
+            lifePowerup.physicsBody?.collisionBitMask = ColliderType.platypus.rawValue
             lifePowerup.physicsBody?.usesPreciseCollisionDetection = true
             lifePowerup.physicsBody?.mass = 1
             if (!self.impulseSlower) {
-                let vector = CGVectorMake(0, 0.0 - 3.0 - (self.level.CGFloatValue / 2.0))
+                let vector = CGVector(dx: 0, dy: 0.0 - 3.0 - (self.level.CGFloatValue / 2.0))
                 lifePowerup.physicsBody?.applyImpulse(vector)
             }
             else {
-                let vector = CGVectorMake(0, -3.0)
+                let vector = CGVector(dx: 0, dy: -3.0)
                 lifePowerup.physicsBody?.applyImpulse(vector)
             }
             self.addChild(lifePowerup)
@@ -485,19 +485,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
             let lifePowerup = SKSpriteNode(imageNamed: "gravityPowerup")
             lifePowerup.position = point
             lifePowerup.name = "gravity"
-            lifePowerup.physicsBody = SKPhysicsBody(rectangleOfSize: lifePowerup.size)
+            lifePowerup.physicsBody = SKPhysicsBody(rectangleOf: lifePowerup.size)
             lifePowerup.physicsBody?.usesPreciseCollisionDetection = true
-            lifePowerup.physicsBody?.categoryBitMask = ColliderType.Gravity.rawValue
-            lifePowerup.physicsBody?.contactTestBitMask = ColliderType.Platypus.rawValue
-            lifePowerup.physicsBody?.collisionBitMask = ColliderType.Platypus.rawValue
+            lifePowerup.physicsBody?.categoryBitMask = ColliderType.gravity.rawValue
+            lifePowerup.physicsBody?.contactTestBitMask = ColliderType.platypus.rawValue
+            lifePowerup.physicsBody?.collisionBitMask = ColliderType.platypus.rawValue
             lifePowerup.physicsBody?.usesPreciseCollisionDetection = true
             lifePowerup.physicsBody?.mass = 1
             if (!self.impulseSlower) {
-                let vector = CGVectorMake(0, 0.0 - 3.0 - (self.level.CGFloatValue / 2.0))
+                let vector = CGVector(dx: 0, dy: 0.0 - 3.0 - (self.level.CGFloatValue / 2.0))
                 lifePowerup.physicsBody?.applyImpulse(vector)
             }
             else {
-                let vector = CGVectorMake(0, -3.0)
+                let vector = CGVector(dx: 0, dy: -3.0)
                 lifePowerup.physicsBody?.applyImpulse(vector)
             }
             self.addChild(lifePowerup)
@@ -508,19 +508,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
             let lifePowerup = SKSpriteNode(imageNamed: "invinciblePowerup")
             lifePowerup.position = point
             lifePowerup.name = "invincible"
-            lifePowerup.physicsBody = SKPhysicsBody(rectangleOfSize: lifePowerup.size)
+            lifePowerup.physicsBody = SKPhysicsBody(rectangleOf: lifePowerup.size)
             lifePowerup.physicsBody?.usesPreciseCollisionDetection = true
-            lifePowerup.physicsBody?.categoryBitMask = ColliderType.Shield.rawValue
-            lifePowerup.physicsBody?.contactTestBitMask = ColliderType.Platypus.rawValue
-            lifePowerup.physicsBody?.collisionBitMask = ColliderType.Platypus.rawValue
+            lifePowerup.physicsBody?.categoryBitMask = ColliderType.shield.rawValue
+            lifePowerup.physicsBody?.contactTestBitMask = ColliderType.platypus.rawValue
+            lifePowerup.physicsBody?.collisionBitMask = ColliderType.platypus.rawValue
             lifePowerup.physicsBody?.usesPreciseCollisionDetection = true
             lifePowerup.physicsBody?.mass = 1
             if (!self.impulseSlower) {
-                let vector = CGVectorMake(0, 0.0 - 3.0 - (self.level.CGFloatValue / 2.0))
+                let vector = CGVector(dx: 0, dy: 0.0 - 3.0 - (self.level.CGFloatValue / 2.0))
                 lifePowerup.physicsBody?.applyImpulse(vector)
             }
             else {
-                let vector = CGVectorMake(0, -3.0)
+                let vector = CGVector(dx: 0, dy: -3.0)
                 lifePowerup.physicsBody?.applyImpulse(vector)
             }
             self.addChild(lifePowerup)
@@ -529,49 +529,49 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
 
     }
 
-    func didBeginContact(contact: SKPhysicsContact) {
+    func didBegin(_ contact: SKPhysicsContact) {
         let bodyA = contact.bodyA
         let bodyB = contact.bodyB
-        var typeA: ColliderType = ColliderType(rawValue: bodyA.categoryBitMask)!
-        var typeB: ColliderType = ColliderType(rawValue: bodyB.categoryBitMask)!
+        let typeA: ColliderType = ColliderType(rawValue: bodyA.categoryBitMask)!
+        let typeB: ColliderType = ColliderType(rawValue: bodyB.categoryBitMask)!
 
-        if (typeA == ColliderType.Rock) && (typeB == ColliderType.Rock) {
+        if (typeA == ColliderType.rock) && (typeB == ColliderType.rock) {
             bodyA.node?.addChild(self.newSpark())
             bodyB.node?.addChild(self.newSpark())
-        } else if (typeA == .Rock || typeB == .Rock) && (typeA != .Platypus && typeB != .Platypus) {
+        } else if (typeA == .rock || typeB == .rock) && (typeA != .platypus && typeB != .platypus) {
             bodyA.node?.addChild(self.newSpark())
             bodyB.node?.addChild(self.newSpark())
-        } else if (typeA == .Rock || typeB == .Rock) && (typeA == .Platypus || typeB == .Platypus) {
-            typeA == .Rock ? bodyA.node?.addChild(newSpark()) : bodyB.node?.addChild(newSpark())
+        } else if (typeA == .rock || typeB == .rock) && (typeA == .platypus || typeB == .platypus) {
+            typeA == .rock ? bodyA.node?.addChild(newSpark()) : bodyB.node?.addChild(newSpark())
             if !self.invincible {
-                hits++
+                hits += 1
                 self.userFeedback()
                 if hits < 3 {
                     self.handleInvincibility()
                     let action = SKAction.playSoundFileNamed("Clank.mp3", waitForCompletion: false)
-                    self.runAction(action)
+                    self.run(action)
                 } else {
                     let action = SKAction.playSoundFileNamed("Grenade.mp3", waitForCompletion: false)
-                    self.runAction(action)
+                    self.run(action)
                     self.shouldAcceptFurtherCollisions = false
                     self.shouldMakeMoreRocks = false
                 }
             }
-        } else if (typeA == .Life || typeB == .Life) && (typeA == .Platypus || typeB == .Platypus) {
-            hits--
-            typeA == .Life ? bodyA.node?.removeFromParent() : bodyB.node?.removeFromParent()
+        } else if (typeA == .life || typeB == .life) && (typeA == .platypus || typeB == .platypus) {
+            hits -= 1
+            typeA == .life ? bodyA.node?.removeFromParent() : bodyB.node?.removeFromParent()
             let action = SKAction.playSoundFileNamed("Servo Movement 02.mp3", waitForCompletion: false)
-            self.runAction(action)
-        } else if (typeA == .Gravity || typeB == .Gravity) && (typeA == .Platypus || typeB == .Platypus) {
+            self.run(action)
+        } else if (typeA == .gravity || typeB == .gravity) && (typeA == .platypus || typeB == .platypus) {
             self.handleSlow()
             let action = SKAction.playSoundFileNamed("Servo Movement 02.mp3", waitForCompletion: false)
-            self.runAction(action)
-            typeA == .Gravity ? bodyA.node?.removeFromParent() : bodyB.node?.removeFromParent()
-        } else if (typeA == .Shield || typeB == .Shield) && (typeA == .Platypus || typeB == .Platypus) {
+            self.run(action)
+            typeA == .gravity ? bodyA.node?.removeFromParent() : bodyB.node?.removeFromParent()
+        } else if (typeA == .shield || typeB == .shield) && (typeA == .platypus || typeB == .platypus) {
             self.handleInvincibility()
             let action = SKAction.playSoundFileNamed("Servo Movement 02.mp3", waitForCompletion: false)
-            self.runAction(action)
-            typeA == .Shield ? bodyA.node?.removeFromParent() : bodyB.node?.removeFromParent()
+            self.run(action)
+            typeA == .shield ? bodyA.node?.removeFromParent() : bodyB.node?.removeFromParent()
         }
 
 
@@ -580,13 +580,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
 
     func userFeedback() {
         
-        let node = SKShapeNode(rectOfSize: self.frame.size)
+        let node = SKShapeNode(rectOf: self.frame.size)
         node.fillColor = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 0.25 * CGFloat(hits))
-        node.strokeColor = UIColor.redColor()
-        node.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
+        node.strokeColor = UIColor.red
+        node.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
         self.addChild(node)
-        let action = SKAction.fadeAlphaTo(0, duration: 0.5)
-        node.runAction(action)
+        let action = SKAction.fadeAlpha(to: 0, duration: 0.5)
+        node.run(action)
         AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
         
     }
@@ -598,10 +598,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
     */
     func handleSlow() {
         self.impulseSlower = true
-        let block = SKAction.runBlock({self.impulseSlower = false})
-        let delay = SKAction.waitForDuration(6.0)
+        let block = SKAction.run({self.impulseSlower = false})
+        let delay = SKAction.wait(forDuration: 6.0)
         let sequence = SKAction.sequence([delay, block])
-        self.runAction(sequence)
+        self.run(sequence)
 
 
     }
@@ -612,8 +612,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
     *  @return Void
     */
     func newSpark() -> SKEmitterNode {
-        let path = NSBundle.mainBundle().pathForResource("spark", ofType: "sks")
-        let node: SKEmitterNode = NSKeyedUnarchiver.unarchiveObjectWithFile(path!) as! SKEmitterNode
+        let path = Bundle.main.path(forResource: "spark", ofType: "sks")
+        let node: SKEmitterNode = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
         return node
     }
 
@@ -624,12 +624,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
     */
     func handleInvincibility() {
         self.invincible = true
-        let node = self.childNodeWithName("PlatypusBody") as! SKSpriteNode
-        let fadeout = SKAction.fadeOutWithDuration(0.25)
-        let fadeIn = SKAction.fadeInWithDuration(0.25)
-        let block = SKAction.runBlock({self.invincible = false})
+        let node = self.childNode(withName: "PlatypusBody") as! SKSpriteNode
+        let fadeout = SKAction.fadeOut(withDuration: 0.25)
+        let fadeIn = SKAction.fadeIn(withDuration: 0.25)
+        let block = SKAction.run({self.invincible = false})
         let sequence = SKAction.sequence([fadeout, fadeIn, fadeout, fadeIn, fadeout, fadeIn, fadeout, fadeIn, fadeout,fadeIn, fadeout, fadeIn, block])
-        node.runAction(sequence)
+        node.run(sequence)
 
     }
 
@@ -641,66 +641,76 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
     func gameOver() {
         
         var point: CGPoint
-        if let pointTwo = self.childNodeWithName("PlatypusBody")?.position {
+        if let pointTwo = self.childNode(withName: "PlatypusBody")?.position {
             point = pointTwo
         }
         else {
-            point = CGPointZero
+            point = CGPoint.zero
         }
         self.timer.stop()
         self.removeAllActions()
         self.removeAllChildren()
         self.addChild(self.stars)
         self.stars.advanceSimulationTime(6.0)
-        let path = NSBundle.mainBundle().pathForResource("MyExplosion", ofType: "sks")
-        let node = NSKeyedUnarchiver.unarchiveObjectWithFile(path!) as! SKEmitterNode
+        let path = Bundle.main.path(forResource: "MyExplosion", ofType: "sks")
+        let node = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
         node.position = point 
         
         if motionEnabled {
-            if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-                EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.motionPhoneOnly.rawValue, score: seconds)
-            }
-            else {
-                EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.motionPadOnly.rawValue, score: seconds)
-            }
+            // TODO: DELETE: if UIDevice.current.userInterfaceIdiom == .phone {
+            // TODO: DELETE:     EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.motionPhoneOnly.rawValue, score: seconds)
+            // TODO: DELETE: }
+            // TODO: DELETE: else {
+            // TODO: DELETE:     EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.motionPadOnly.rawValue, score: seconds)
+            // TODO: DELETE: }
         }
-        if UIDevice.currentDevice().userInterfaceIdiom == .Phone {
-            EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.phoneOnly.rawValue, score: seconds)
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            // TODO: DELETE: EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.phoneOnly.rawValue, score: seconds)
         }
         else {
-            EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.padOnly.rawValue, score: seconds)
+            // TODO: DELETE: EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.padOnly.rawValue, score: seconds)
         }
+        
+        if seconds > recordHighScore {
+            recordHighScore = seconds
+        }
+        
+        numberOfGamesPlayed += 1
+        
+        averageScore = ((averageScore * Double(numberOfGamesPlayed - 1)) + Double(seconds)) / Double(numberOfGamesPlayed)
+        
+        timeSpentPlaying += seconds
         
         self.addChild(node)
 
         let label = SKLabelNode(fontNamed: "Helvetica")
         label.text = self.timerLabel.text
         label.fontSize = 36
-        label.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
-        label.hidden = true
+        label.position = CGPoint(x: self.frame.midX, y: self.frame.midY)
+        label.isHidden = true
         label.name = "label"
         let finalBlock: () -> () = ({
 
             let scene = WelcomeScene(size: self.size)
-            let transition = SKTransition.doorsCloseHorizontalWithDuration(0.5)
+            let transition = SKTransition.doorsCloseHorizontal(withDuration: 0.5)
             self.scene?.view?.presentScene(scene, transition: transition)
 
             })
         self.addChild(label)
-        let delay = SKAction.waitForDuration(1.0)
+        let delay = SKAction.wait(forDuration: 1.0)
         //let block = SKAction.runBlock { (Double) -> number in
         //    self.childNodeWithName("label"?.hidden = false)
         //}
-        let actionBlock: (Int, Int) -> dispatch_block_t = {(one: Int, two: Int) -> dispatch_block_t in
-            self.childNodeWithName(String("label"))?.hidden = false
+        let actionBlock: (Int, Int) -> ()->() = {(one: Int, two: Int) -> ()->() in
+            self.childNode(withName: String("label"))?.isHidden = false
             return ({()->Void in return})
         }
         
-        let block = SKAction.runBlock(actionBlock(2, 3))
-        let delay2 = SKAction.waitForDuration(2.0)
-        let block2 = SKAction.runBlock(finalBlock)
+        let block = SKAction.run(actionBlock(2, 3))
+        let delay2 = SKAction.wait(forDuration: 2.0)
+        let block2 = SKAction.run(finalBlock)
         let sequence = SKAction.sequence([delay, block, delay2, block2])
-        self.runAction(sequence)
+        self.run(sequence)
     }
 
 }
