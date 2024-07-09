@@ -27,7 +27,6 @@ class PlatypusNode: SKSpriteNode {
     */
     init(type: kPlatypusColor) {
         
-        //super.init(imageNamed: imageNameForPlatypusColor(type))
         super.init(texture: nil, color: UIColor.clear, size: CGSize.zero)
         self.texture = SKTexture(imageNamed: imageNameForPlatypusColor(type))
         if let texture = self.texture {

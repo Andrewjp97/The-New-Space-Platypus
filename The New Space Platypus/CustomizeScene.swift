@@ -3,7 +3,7 @@
 //  Space Platypus Swift
 //
 //  Created by Andrew Paterson on 6/5/14.
-//  Copyright (c) 2014 Andrew Paterson. All rights reserved.
+//  Copyright (c) 2017 Andrew Paterson. All rights reserved.
 //
 
 import Foundation
@@ -167,7 +167,7 @@ class CustomizeScene: SKScene {
         node.name = "back"
         node.fontColor = SKColor.white
         node.fontSize = 24
-        node.position = CGPoint(x: 10 + (0.5 * node.frame.size.width), y: self.frame.maxY - 20 - (0.5 * node.frame.size.height))
+        node.position = CGPoint(x: 10 + (0.5 * node.frame.size.width), y: self.frame.maxY - 30 - (0.5 * node.frame.size.height))
         if UIDevice.current.userInterfaceIdiom == .pad {
             node.position = CGPoint(x: 20 + (0.5 * node.frame.size.width), y: self.frame.maxY - 40 - (0.5 * node.frame.size.height))
         }

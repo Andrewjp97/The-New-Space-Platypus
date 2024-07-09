@@ -3,13 +3,12 @@
 //  The New Space Platypus
 //
 //  Created by Andrew Paterson on 4/27/15.
-//  Copyright (c) 2015 Andrew Paterson. All rights reserved.
+//  Copyright (c) 2017 Andrew Paterson. All rights reserved.
 //
 
 import UIKit
 import SpriteKit
 import GameKit
-//import Crashlytics
 
 
 /**
@@ -182,11 +181,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Get Stored Values from NSUserDefaults
         
         motionEnabled = UserDefaults.standard.bool(forKey: "motion")
-        //gameCenterEnabled = NSUserDefaults.standardUserDefaults().boolForKey("gk")
-        // if NSUserDefaults.standardUserDefaults().objectForKey("test") as String != "yes" {
-        // gameCenterEnabled = true
-        //    NSUserDefaults.standardUserDefaults().setObject("yes", forKey: "test")
-        // }
         
         recordHighScore = UserDefaults.standard.integer(forKey: "recordHighScore")
         
@@ -231,7 +225,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         super.init()
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         return true
     }

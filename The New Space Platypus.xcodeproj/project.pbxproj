@@ -18,7 +18,6 @@
 		AE67D9C51AF6F6DA0025AF9E /* scifi011.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9C11AF6F6DA0025AF9E /* scifi011.mp3 */; };
 		AE67D9C81AF6F87A0025AF9E /* Servo Movement 02.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AE67D9C71AF6F87A0025AF9E /* Servo Movement 02.mp3 */; };
 		AEAE7A0D1B0114F8007DE645 /* Clank.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = AEAE7A0C1B0114F8007DE645 /* Clank.mp3 */; };
-		AEC55D3A1EEB74D200BAC0F7 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AEC55D391EEB74D200BAC0F7 /* GameKit.framework */; };
 		AED150DA1AEEC95D00D1C1A0 /* CustomizeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED150D91AEEC95D00D1C1A0 /* CustomizeScene.swift */; };
 		AED150DC1AEEC97100D1C1A0 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED150DB1AEEC97100D1C1A0 /* GameScene.swift */; };
 		AED150DE1AEEC9B700D1C1A0 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED150DD1AEEC9B700D1C1A0 /* GameViewController.swift */; };
@@ -64,7 +63,6 @@
 		AE67D9C11AF6F6DA0025AF9E /* scifi011.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = scifi011.mp3; sourceTree = "<group>"; };
 		AE67D9C71AF6F87A0025AF9E /* Servo Movement 02.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Servo Movement 02.mp3"; sourceTree = "<group>"; };
 		AEAE7A0C1B0114F8007DE645 /* Clank.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = Clank.mp3; path = ../Clank.mp3; sourceTree = "<group>"; };
-		AEC55D391EEB74D200BAC0F7 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		AED150D91AEEC95D00D1C1A0 /* CustomizeScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomizeScene.swift; sourceTree = "<group>"; };
 		AED150DB1AEEC97100D1C1A0 /* GameScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		AED150DD1AEEC9B700D1C1A0 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -88,7 +86,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AEC55D3A1EEB74D200BAC0F7 /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,7 +189,6 @@
 		AEC55D381EEB74D200BAC0F7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AEC55D391EEB74D200BAC0F7 /* GameKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -248,18 +244,18 @@
 					AE1FADB31AEEC66700C1783F = {
 						CreatedOnToolsVersion = 6.3;
 						DevelopmentTeam = 3W67YYZ9EF;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 1540;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
 					AE1FADCC1AEEC66800C1783F = {
 						CreatedOnToolsVersion = 6.3;
 						DevelopmentTeam = 3W67YYZ9EF;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 1540;
 						ProvisioningStyle = Automatic;
 						TestTargetID = AE1FADB31AEEC66700C1783F;
 					};
@@ -270,6 +266,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -420,7 +417,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -462,7 +459,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
@@ -480,19 +477,28 @@
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = 3W67YYZ9EF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "The New Space Platypus/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "The New Space Platypus";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewPaterson.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -504,19 +510,28 @@
 				CLANG_USE_OPTIMIZATION_PROFILE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = 3W67YYZ9EF;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "The New Space Platypus/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				INFOPLIST_KEY_CFBundleDisplayName = "The New Space Platypus";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewPaterson.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -535,11 +550,12 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "The New Space PlatypusTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewPaterson.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/The New Space Platypus.app/The New Space Platypus";
 			};
 			name = Debug;
@@ -555,11 +571,12 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "The New Space PlatypusTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.AndrewPaterson.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/The New Space Platypus.app/The New Space Platypus";
 			};
 			name = Release;

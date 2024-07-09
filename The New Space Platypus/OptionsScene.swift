@@ -3,7 +3,7 @@
 //  Space Platypus Swift
 //
 //  Created by Andrew Paterson on 6/5/14.
-//  Copyright (c) 2014 Andrew Paterson. All rights reserved.
+//  Copyright (c) 2017 Andrew Paterson. All rights reserved.
 //
 
 import Foundation
@@ -76,7 +76,7 @@ class OptionsScene: SKScene {
         backButton.name = "back"
         backButton.fontColor = SKColor.white
         backButton.fontSize = 24
-        backButton.position = CGPoint(x: 10 + (0.5 * backButton.frame.size.width), y: self.frame.maxY - 20 - (0.5 * backButton.frame.size.height))
+        backButton.position = CGPoint(x: 10 + (0.5 * backButton.frame.size.width), y: self.frame.maxY - 30 - (0.5 * backButton.frame.size.height))
         
         return backButton
         

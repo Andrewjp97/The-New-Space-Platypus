@@ -3,7 +3,7 @@
 //  Space Platypus Swift
 //
 //  Created by Andrew Paterson on 6/5/14.
-//  Copyright (c) 2014 Andrew Paterson. All rights reserved.
+//  Copyright (c) 2017 Andrew Paterson. All rights reserved.
 //
 
 import Foundation
@@ -46,7 +46,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
     var shouldAcceptFurtherCollisions = true
     var shouldMakeMoreRocks = true
     var level = 0
-    // TODO: DELETE: var achievementsDictionary = [:]
     var motionManager: CMMotionManager?
     var impulseSlower = false
     var timer: Timer = Timer()
@@ -73,7 +72,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
         self.timer.start()
         let action = SKAction.run({
             self.enumerateChildNodes(withName: "slow", using: ({(node, stop) in
-            node.alpha = node.alpha - 0.4
+            node.alpha = node.alpha - (0.8/10)
             }))
             })
         
@@ -117,7 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
         node.zPosition = 1000
         let action = SKAction.run({
             let node = self.childNode(withName: "slow") as! SKSpriteNode
-            node.alpha = node.alpha + 0.2
+            node.alpha = node.alpha + (0.8/20)
             })
         let repeatStep = SKAction.repeat(SKAction.sequence([action, SKAction.wait(forDuration: 0.05)]), count: 20)
         self.addChild(node)
@@ -166,7 +165,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
         self.seconds = value
         let string = value % 60 < 10 ? "0\(value % 60)" : "\(value % 60)"
         self.timerLabel.text = "\(value / 60):\(string)"
-        self.timerLabel.position = CGPoint(x: 10 + (0.5 * self.timerLabel.frame.size.width), y: self.frame.size.height - 20 - (0.5 * self.timerLabel.frame.size.height))
+        self.timerLabel.position = CGPoint(x: 10 + (0.5 * self.timerLabel.frame.size.width), y: self.frame.size.height - 30 - (0.5 * self.timerLabel.frame.size.height))
         
     }
 
@@ -180,7 +179,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
             self.backgroundColor = SKColor.black
             self.timerLabel.fontSize = 24
             self.timerLabel.fontColor = SKColor.white
-            self.timerLabel.position = CGPoint(x: 10 + (0.5 * self.timerLabel.frame.size.width), y: self.frame.size.height - 20 - (0.5 * self.timerLabel.frame.size.height))
+            self.timerLabel.position = CGPoint(x: 10 + (0.5 * self.timerLabel.frame.size.width), y: self.frame.size.height - 30 - (0.5 * self.timerLabel.frame.size.height))
             self.addChild(self.timerLabel)
 
 
@@ -285,7 +284,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
                 if let window = view.window {
                     let width = window.frame.width
                     let height = window.frame.height
-                    node.position = CGPoint(x: width - 70, y: height - 15)
+                    node.position = CGPoint(x: width - 70, y: height - 30)
                 }
             }
             
@@ -654,22 +653,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
         self.stars.advanceSimulationTime(6.0)
         let path = Bundle.main.path(forResource: "MyExplosion", ofType: "sks")
         let node = NSKeyedUnarchiver.unarchiveObject(withFile: path!) as! SKEmitterNode
-        node.position = point 
-        
-        if motionEnabled {
-            // TODO: DELETE: if UIDevice.current.userInterfaceIdiom == .phone {
-            // TODO: DELETE:     EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.motionPhoneOnly.rawValue, score: seconds)
-            // TODO: DELETE: }
-            // TODO: DELETE: else {
-            // TODO: DELETE:     EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.motionPadOnly.rawValue, score: seconds)
-            // TODO: DELETE: }
-        }
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            // TODO: DELETE: EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.phoneOnly.rawValue, score: seconds)
-        }
-        else {
-            // TODO: DELETE: EasyGameCenter.reportScoreLeaderboard(leaderboardIdentifier: identifierString.padOnly.rawValue, score: seconds)
-        }
+        node.position = point
         
         if seconds > recordHighScore {
             recordHighScore = seconds
@@ -698,9 +682,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
             })
         self.addChild(label)
         let delay = SKAction.wait(forDuration: 1.0)
-        //let block = SKAction.runBlock { (Double) -> number in
-        //    self.childNodeWithName("label"?.hidden = false)
-        //}
+
         let actionBlock: (Int, Int) -> ()->() = {(one: Int, two: Int) -> ()->() in
             self.childNode(withName: String("label"))?.isHidden = false
             return ({()->Void in return})

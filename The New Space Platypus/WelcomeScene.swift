@@ -3,7 +3,7 @@
 //  Space Platypus Swift
 //
 //  Created by Andrew Paterson on 6/4/14.
-//  Copyright (c) 2014 Andrew Paterson. All rights reserved.
+//  Copyright (c) 2017 Andrew Paterson. All rights reserved.
 //
 
 import SpriteKit
@@ -88,7 +88,6 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate {
             self.createSceneContent()
             contentCreated = true
             
-            UIApplication.shared.statusBarStyle = .lightContent
             self.view?.isUserInteractionEnabled = true
             
             self.physicsWorld.contactDelegate = self
@@ -293,7 +292,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate {
         helloNode.fontSize = 32
         helloNode.position = CGPoint(x: self.frame.midX + 8, y: self.frame.midY + 57)
         helloNode.name = "HelloNode"
-        helloNode.zPosition = 19
+        helloNode.zPosition = 18
         helloNode.fontColor = SKColor.darkGray
         
         let helloNode111 = SKLabelNode()
@@ -302,7 +301,7 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate {
         helloNode111.fontSize = 36
         helloNode111.position = CGPoint(x: self.frame.midX - 70, y: self.frame.midY + 96)
         helloNode111.name = "HelloNode"
-        helloNode111.zPosition = 19
+        helloNode111.zPosition = 18
         helloNode111.fontColor = SKColor.darkGray
         self.addChild(helloNode111)
         
@@ -351,20 +350,6 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(customizeBox)
         customizeBox.name = "customizeBox"
 
-//        var scoreNode = SKLabelNode()
-//        scoreNode.fontName = "Helvetica"
-//        scoreNode.text = "Scores"
-//        scoreNode.fontColor = SKColor.greenColor()
-//        scoreNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 108)
-//        scoreNode.zPosition = 20
-//
-//        var achievementNode = SKLabelNode()
-//        achievementNode.fontName = "Helvetica"
-//        achievementNode.text = "Achievements"
-//        achievementNode.fontColor = SKColor.blueColor()
-//        achievementNode.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame) - 144)
-//        achievementNode.zPosition = 20
-
         let optionsNode = SKLabelNode()
         optionsNode.fontName = "Helvetica"
         optionsNode.text = "Options"
@@ -378,25 +363,8 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate {
         optionsBox.position = CGPoint(x: optionsBox.position.x, y: optionsBox.position.y + 10)
         self.addChild(optionsBox)
         optionsBox.name = "optionsBox"
-//        
-//       TODO: DELETE: let scoreNode = SKLabelNode()
-//        scoreNode.fontName = "Helvetica"
-//        scoreNode.text = "Scores"
-//        scoreNode.fontColor = SKColor.purple
-//        scoreNode.position = CGPoint(x: self.frame.midX, y: self.frame.midY - 187.5)
-//        scoreNode.zPosition = 20
-//        self.addChild(scoreNode)
-        
-//        let scoreBox = SKShapeNode(rectOf: CGSize(width: 200, height: 50), cornerRadius: 5)
-//     // TODO: DELETE:    scoreBox.strokeColor = SKColor.purple
-//        scoreBox.position = scoreNode.position
-//        scoreBox.position = CGPoint(x: scoreBox.position.x, y: scoreBox.position.y + 10)
-//        self.addChild(scoreBox)
-//        scoreBox.name = "scoreBox"
-        
+
         self.addChild(optionsNode)
-//        self.addChild(achievementNode)
-//        self.addChild(scoreNode)
         self.addChild(customizeNode)
         self.addChild(playNode)
         self.addChild(helloNode1)
@@ -404,33 +372,6 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate {
 
     }
 
-    /**
-    *  Shows the Game Center Leaderboards
-  // TODO: DELETE:   *
-    *  @return Void
-    */
-//    func showLeaderboard() {
-//
-//        let controller = GKGameCenterViewController()
-//        controller.gameCenterDelegate = self;
-//        controller.viewState = .leaderboards
-//        self.view?.window?.rootViewController?.present(controller, animated: true, completion: nil)
-//
-//    }
-
-//  // TODO: DELETE:   /**
-//    *  Shows the Game Center Achievments
-//    *
-//    *  @return Void
-//    */
-//    func showAchievements() {
-//
-//        let controller = GKGameCenterViewController()
-//        controller.gameCenterDelegate = self
-//        controller.viewState  = .achievements
-//        self.view?.window?.rootViewController?.present(controller, animated: true, completion: nil)
-//
-//    }
 
     /**
     *  Creates the falling rocks in the scene: creates a repeating action to make rocks
@@ -456,25 +397,6 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate {
     *
     *  @return The type of menu item present, returns kMenuItemTypeInvalid if no menu item is present at the given point
     */
-//    func whatMenuItemTypeIsAtPoint(point: CGPoint) -> menuItemType {
-//
-//        let midScreenY = CGRectGetMidY(self.frame)
-//        
-//        if point.y > (midScreenY - 75) && point.y < (midScreenY - 25) {
-//            return .kMenuItemTypePlay
-//        } else if point.y > (midScreenY - 137.5) && point.y < (midScreenY - 87.5) {
-//            return .kMenuItemTypeCustomize
-////        } else if point.y > (midScreenY - 126) && point.y < (midScreenY - 90) {
-////            return .kMenuItemTypeScores
-////        } else if point.y > (midScreenY - 162) && point.y < (midScreenY - 126) {
-////            return .kMenuItemTypeAchievements
-//        } else if point.y > (midScreenY - 175) && point.y < (midScreenY - 137.6) {
-//            return .kMenuItemTypeOptions
-//        } else {
-//            return .kMenuItemTypeInvalid
-//        }
-//    }
-
     func whatMenuItemTypeIsAtPoint(_ point: CGPoint) -> menuItemType {
         
         if self.childNode(withName: "playBox")!.contains(point) {
@@ -486,9 +408,6 @@ class WelcomeScene: SKScene, SKPhysicsContactDelegate {
         else if self.childNode(withName: "optionsBox")!.contains(point) {
             return .kMenuItemTypeOptions
         }
-        // TODO: DELETE: else if self.childNode(withName: "scoreBox")!.contains(point) {
-        // TODO: DELETE:     return .kMenuItemTypeScores
-       // TODO: DELETE:  }
         else {
             return .kMenuItemTypeInvalid
         }
