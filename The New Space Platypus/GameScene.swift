@@ -481,48 +481,48 @@ class GameScene: SKScene, SKPhysicsContactDelegate, TimerDelegate {
       
     }
     if (random == 1) {
-      let lifePowerup = SKSpriteNode(imageNamed: "gravityPowerup")
-      lifePowerup.position = point
-      lifePowerup.name = "gravity"
-      lifePowerup.physicsBody = SKPhysicsBody(rectangleOf: lifePowerup.size)
-      lifePowerup.physicsBody?.usesPreciseCollisionDetection = true
-      lifePowerup.physicsBody?.categoryBitMask = ColliderType.gravity.rawValue
-      lifePowerup.physicsBody?.contactTestBitMask = ColliderType.platypus.rawValue
-      lifePowerup.physicsBody?.collisionBitMask = ColliderType.platypus.rawValue
-      lifePowerup.physicsBody?.usesPreciseCollisionDetection = true
-      lifePowerup.physicsBody?.mass = 1
+      let gravityPowerup = SKSpriteNode(imageNamed: "gravityPowerup")
+      gravityPowerup.position = point
+      gravityPowerup.name = "gravity"
+      gravityPowerup.physicsBody = SKPhysicsBody(rectangleOf: gravityPowerup.size)
+      gravityPowerup.physicsBody?.usesPreciseCollisionDetection = true
+      gravityPowerup.physicsBody?.categoryBitMask = ColliderType.gravity.rawValue
+      gravityPowerup.physicsBody?.contactTestBitMask = ColliderType.platypus.rawValue
+      gravityPowerup.physicsBody?.collisionBitMask = ColliderType.platypus.rawValue
+      gravityPowerup.physicsBody?.usesPreciseCollisionDetection = true
+      gravityPowerup.physicsBody?.mass = 1
       if (!self.impulseSlower) {
         let vector = CGVector(dx: 0, dy: 0.0 - 3.0 - (self.level.CGFloatValue / 2.0))
-        lifePowerup.physicsBody?.applyImpulse(vector)
+        gravityPowerup.physicsBody?.applyImpulse(vector)
       }
       else {
         let vector = CGVector(dx: 0, dy: -3.0)
-        lifePowerup.physicsBody?.applyImpulse(vector)
+        gravityPowerup.physicsBody?.applyImpulse(vector)
       }
-      self.addChild(lifePowerup)
+      self.addChild(gravityPowerup)
       
       
     }
     if (random == 2) {
-      let lifePowerup = SKSpriteNode(imageNamed: "invinciblePowerup")
-      lifePowerup.position = point
-      lifePowerup.name = "invincible"
-      lifePowerup.physicsBody = SKPhysicsBody(rectangleOf: lifePowerup.size)
-      lifePowerup.physicsBody?.usesPreciseCollisionDetection = true
-      lifePowerup.physicsBody?.categoryBitMask = ColliderType.shield.rawValue
-      lifePowerup.physicsBody?.contactTestBitMask = ColliderType.platypus.rawValue
-      lifePowerup.physicsBody?.collisionBitMask = ColliderType.platypus.rawValue
-      lifePowerup.physicsBody?.usesPreciseCollisionDetection = true
-      lifePowerup.physicsBody?.mass = 1
+      let invinciblePowerup = SKSpriteNode(imageNamed: "invinciblePowerup")
+      invinciblePowerup.position = point
+      invinciblePowerup.name = "invincible"
+      invinciblePowerup.physicsBody = SKPhysicsBody(rectangleOf: invinciblePowerup.size)
+      invinciblePowerup.physicsBody?.usesPreciseCollisionDetection = true
+      invinciblePowerup.physicsBody?.categoryBitMask = ColliderType.shield.rawValue
+      invinciblePowerup.physicsBody?.contactTestBitMask = ColliderType.platypus.rawValue
+      invinciblePowerup.physicsBody?.collisionBitMask = ColliderType.platypus.rawValue
+      invinciblePowerup.physicsBody?.usesPreciseCollisionDetection = true
+      invinciblePowerup.physicsBody?.mass = 1
       if (!self.impulseSlower) {
         let vector = CGVector(dx: 0, dy: 0.0 - 3.0 - (self.level.CGFloatValue / 2.0))
-        lifePowerup.physicsBody?.applyImpulse(vector)
+        invinciblePowerup.physicsBody?.applyImpulse(vector)
       }
       else {
         let vector = CGVector(dx: 0, dy: -3.0)
-        lifePowerup.physicsBody?.applyImpulse(vector)
+        invinciblePowerup.physicsBody?.applyImpulse(vector)
       }
-      self.addChild(lifePowerup)
+      self.addChild(invinciblePowerup)
       
     }
     
